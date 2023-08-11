@@ -1,4 +1,4 @@
-import { createClient } from '../../../../utils/supabase'
+import { createClient } from '@/app/utils/supabase'
 import { nanoid } from 'nanoid'
 
 type RequestData = {
