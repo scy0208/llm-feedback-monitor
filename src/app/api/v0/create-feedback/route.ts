@@ -1,4 +1,4 @@
-import { createClient } from '@/app/utils/supabase';
+import { createClient } from '@/utils/supabase';
 
 type RequestData = {
     project_id: string,
