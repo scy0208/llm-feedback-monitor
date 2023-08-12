@@ -20,8 +20,11 @@ import {
   Settings,
   SunMedium,
   Trash,
+  ThumbsUp,
   Twitter,
   User,
+  MessagesSquare,
+  FolderOpenDot,
   X,
   type LucideIcon 
 } from "lucide-react"
@@ -50,6 +53,9 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  thumbsup: ThumbsUp,
+  folderOpenDot: FolderOpenDot,
+  messagesSquare: MessagesSquare,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"

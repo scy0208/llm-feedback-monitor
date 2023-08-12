@@ -2,33 +2,33 @@ import { createClient } from '@/utils/supabase';
 import { Table } from '@radix-ui/themes';
 
 export default async function DashboardPage() {
-  
     const { data, error } = await createClient()
-        .from('llm_config_summary_view')
-        .select('*')
+        .from('LLMConfig')
+        .select(`*`)
+    
+    console.log(data)
 
-        return (
-            <Table.Root variant="surface">
+    return (
+        <Table.Root variant="surface">
                 <Table.Header>
                     <Table.Row>
-                        <Table.ColumnHeaderCell>Configuration Prompt</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>LLM Config</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>Config ID</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Project ID</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Key</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Total Score</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>Created At</Table.ColumnHeaderCell>
                     </Table.Row>
                 </Table.Header>
     
                 <Table.Body>
                     {data && data.length > 0 ? (
                         data.map((item, index) => {
-                            const config = JSON.parse(item.config);
-    
+                            const config = JSON.stringify(item.config)
                             return (
                                 <Table.Row key={index}>
-                                    <Table.Cell>{item.config}</Table.Cell>
+                                    <Table.Cell>{config}</Table.Cell>
+                                    <Table.Cell>{item.id}</Table.Cell>
                                     <Table.Cell>{item.project_id}</Table.Cell>
-                                    <Table.Cell>{item.key}</Table.Cell>
-                                    <Table.Cell>{item.total_score}</Table.Cell>
+                                    <Table.Cell>{item.created_at}</Table.Cell>
                                 </Table.Row>
                             );
                         })
@@ -39,5 +39,5 @@ export default async function DashboardPage() {
                     )}
                 </Table.Body>
             </Table.Root>
-        );
+    )
 }
