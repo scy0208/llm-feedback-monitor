@@ -8,7 +8,7 @@ type RequestData = {
 
 export const runtime = 'edge';
 
-export async function insertConfig(
+async function insertConfig(
     { config, project_id, id }: RequestData) {
 
     if (!id) {

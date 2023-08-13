@@ -14,7 +14,7 @@ type RequestData = {
 
 export const runtime = 'edge';
 
-export async function createFeedback(
+async function createFeedback(
     { project_id, config_id, content_id, group_id, key, score, comment, user, id }: RequestData) {
 
     if (!project_id) {

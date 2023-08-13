@@ -11,7 +11,7 @@ type RequestData = {
 
 export const runtime = 'edge';
 
-export async function insertContent(
+async function insertContent(
     { content, project_id, created_by, group_id, config_id, id }: RequestData) {
     if (!content) {
         throw new Error("Content is required");

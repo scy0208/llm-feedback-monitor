@@ -7,7 +7,7 @@ type RequestData = {
 
 export const runtime = 'edge';
 
-export async function insertProject(
+async function insertProject(
     { name }: RequestData) {
     if (!name) {
         throw new Error("Name is required");
