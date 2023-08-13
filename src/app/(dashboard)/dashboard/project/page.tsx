@@ -11,7 +11,6 @@ export default async function ProjectPage() {
         .from('Project')
         .select(`*`)
 
-    console.log(data)
     return (
         <Table.Root variant="surface">
             <Table.Header>
