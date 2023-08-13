@@ -9,10 +9,8 @@ import * as z from "zod"
 
 import { cn } from "@/lib/utils"
 import { userAuthSchema } from "@/lib/validations/auth"
-import { buttonVariants } from "@/components/ui/button"
-import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
-import { Button } from "@radix-ui/themes"
+import { Button,  } from "@radix-ui/themes"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -30,30 +28,30 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
 
-  async function onSubmit(data: FormData) {
-    setIsLoading(true)
+  // async function onSubmit(data: FormData) {
+  //   setIsLoading(true)
 
-    const signInResult = await signIn("email", {
-      email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: searchParams?.get("from") || "/dashboard",
-    })
+  //   const signInResult = await signIn("email", {
+  //     email: data.email.toLowerCase(),
+  //     redirect: false,
+  //     callbackUrl: searchParams?.get("from") || "/dashboard",
+  //   })
 
-    setIsLoading(false)
+  //   setIsLoading(false)
 
-    if (!signInResult?.ok) {
-      return toast({
-        title: "Something went wrong.",
-        description: "Your sign in request failed. Please try again.",
-        variant: "destructive",
-      })
-    }
+  //   if (!signInResult?.ok) {
+  //     return toast({
+  //       title: "Something went wrong.",
+  //       description: "Your sign in request failed. Please try again.",
+  //       variant: "destructive",
+  //     })
+  //   }
 
-    return toast({
-      title: "Check your email",
-      description: "We sent you a login link. Be sure to check your spam too.",
-    })
-  }
+  //   return toast({
+  //     title: "Check your email",
+  //     description: "We sent you a login link. Be sure to check your spam too.",
+  //   })
+  // }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
