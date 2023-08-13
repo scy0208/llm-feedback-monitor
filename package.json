@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "concurrently \"contentlayer dev\" \"next dev\"",
+    "build": "contentlayer build && next build",
+    "turbo": "next dev --turbo",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preview": "next build && next start",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@edge-runtime/cookies": "^3.2.3",
@@ -35,6 +38,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
+    "encoding": "^0.1.13",
     "postcss": "^8.4.27",
     "prisma": "^5.1.1",
     "tailwindcss": "^3.3.3"
