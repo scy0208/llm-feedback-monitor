@@ -1,45 +1,34 @@
 import { createClient } from '@/utils/supabase';
-
-import { getCurrentUser } from "@/lib/session"
-import { redirect } from "next/navigation"
-import { authOptions } from "@/lib/auth"
-
 import { Table } from '@radix-ui/themes';
 
 export default async function DashboardPage() {
 
-    const user = await getCurrentUser()
-
-    if (!user) {
-        redirect(authOptions?.pages?.signIn || "/login")
-    }
-
     const { data, error } = await createClient()
-        .from('config_by_project')
-        .select(`*`)
-        .eq('user_id', user.id)
+        .from('llm_config_summary_view')
+        .select('*')
 
     return (
         <Table.Root variant="surface">
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>LLM Config</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Config ID</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Configuration Prompt</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Project ID</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Created At</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Key</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Total Score</Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
 
             <Table.Body>
                 {data && data.length > 0 ? (
                     data.map((item, index) => {
-                        const config = JSON.stringify(item.config)
+                        const config = JSON.parse(item.config);
+
                         return (
                             <Table.Row key={index}>
-                                <Table.Cell>{config}</Table.Cell>
-                                <Table.Cell>{item.id}</Table.Cell>
+                                <Table.Cell>{item.config}</Table.Cell>
                                 <Table.Cell>{item.project_id}</Table.Cell>
-                                <Table.Cell>{item.created_at}</Table.Cell>
+                                <Table.Cell>{item.key}</Table.Cell>
+                                <Table.Cell>{item.total_score}</Table.Cell>
                             </Table.Row>
                         );
                     })
@@ -50,5 +39,5 @@ export default async function DashboardPage() {
                 )}
             </Table.Body>
         </Table.Root>
-    )
+    );
 }

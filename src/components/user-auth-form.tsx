@@ -10,7 +10,7 @@ import * as z from "zod"
 import { cn } from "@/lib/utils"
 import { userAuthSchema } from "@/lib/validations/auth"
 import { Icons } from "@/components/icons"
-import { Button,  } from "@radix-ui/themes"
+import { Button } from "@radix-ui/themes"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 

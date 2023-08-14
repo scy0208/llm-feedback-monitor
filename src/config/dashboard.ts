@@ -20,8 +20,8 @@ export const dashboardConfig: DashboardConfig = {
         icon: "post",
       },
       {
-        title: "Project",
-        href: "/dashboard/project",
+        title: "Summary",
+        href: "/dashboard/summary",
         icon: "folderOpenDot",
       },
       {

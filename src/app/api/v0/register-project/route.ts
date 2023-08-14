@@ -3,12 +3,13 @@ import { nanoid } from 'nanoid'
 
 type RequestData = {
     name: string
+    user_id: string
 }
 
 export const runtime = 'edge';
 
 async function insertProject(
-    { name }: RequestData) {
+    { name, user_id }: RequestData) {
     if (!name) {
         throw new Error("Name is required");
     }
@@ -17,7 +18,8 @@ async function insertProject(
 
     const dataToInsert = {
         id,
-        name
+        name,
+        user_id
     };
 
     const { data, error } = await createClient()
@@ -41,6 +43,9 @@ export async function PUT(req: Request) {
         const requestData = (await req.json()) as RequestData;
         if (!requestData.name) {
             return new Response(JSON.stringify({ message: 'Name is required' }), { status: 400 });
+        }
+        if (!requestData.user_id) {
+            return new Response(JSON.stringify({ message: 'User ID is required' }), { status: 400 });
         }
         const id = await insertProject(requestData);
         return new Response(JSON.stringify({ id }), { status: 200 });
