@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 import { authOptions } from "@/lib/auth"
 
 import { Table } from '@radix-ui/themes';
+import { ContextPopup } from '@/components/context-pop';
 
 
 export default async function FeedbackPage() {
@@ -44,7 +45,12 @@ export default async function FeedbackPage() {
                                 <Table.Cell>{item.user}</Table.Cell>
                                 <Table.Cell>{item.key}</Table.Cell>
                                 <Table.Cell>{item.score}</Table.Cell>
-                                <Table.Cell>{item.Content.content}</Table.Cell>
+                                <Table.Cell>
+                                    <ContextPopup
+                                        groupID={item.Content.group_id}
+                                        content={item.Content.content}
+                                    />
+                                </Table.Cell>
                                 <Table.Cell>{config}</Table.Cell>
                             </Table.Row>
                         );

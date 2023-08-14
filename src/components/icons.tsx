@@ -26,6 +26,7 @@ import {
   MessagesSquare,
   FolderOpenDot,
   X,
+  Bot,
   type LucideIcon 
 } from "lucide-react"
 
@@ -75,4 +76,5 @@ export const Icons = {
   ),
   twitter: Twitter,
   check: Check,
+  bot: Bot
 }
