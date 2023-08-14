@@ -41,11 +41,11 @@ async function insertContent(
     return data[0].id;
 }
 
-export async function PUT(req: Request) {
-    if(req.method == 'OPTIONS') {
-        return new Response(null, { status: 200 });
-    }
-    
+export async function OPTIONS(req: Request) {
+    return new Response(null, { status: 200 });
+}
+
+export async function PUT(req: Request) {    
     try {
         const requestData = (await req.json()) as RequestData;
         if (!requestData.content) {
