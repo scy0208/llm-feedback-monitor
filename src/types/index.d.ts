@@ -18,7 +18,11 @@ export type SidebarNavItem = {
       href: string
       items?: never
     }
-  )
+    | {
+      href?: string
+      items: NavLink[]
+    }
+ )
 
 export type DashboardConfig = {
   mainNav: MainNavItem[]
@@ -34,4 +38,9 @@ export type SiteConfig = {
     twitter: string
     github: string
   }
+}
+
+export type DocsConfig = {
+  mainNav: MainNavItem[]
+  sidebarNav: SidebarNavItem[]
 }

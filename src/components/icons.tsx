@@ -24,6 +24,7 @@ import {
   Twitter,
   User,
   MessagesSquare,
+  Search,
   FolderOpenDot,
   X,
   Bot,
@@ -76,5 +77,6 @@ export const Icons = {
   ),
   twitter: Twitter,
   check: Check,
-  bot: Bot
+  bot: Bot,
+  search: Search
 }
