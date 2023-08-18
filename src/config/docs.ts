@@ -13,42 +13,15 @@ export const docsConfig: DocsConfig = {
   ],
   sidebarNav: [
     {
-      title: "Getting Started",
-      items: [
-        {
-          title: "Introduction",
-          href: "/docs",
-        },
-      ],
-    },
-    {
       title: "Documentation",
       items: [
         {
-          title: "Introduction",
-          href: "/docs/documentation",
-        },
-        {
-          title: "Contentlayer",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Components",
-          href: "/docs/components",
+          title: "API",
+          href: "/docs/api",
         },
         {
           title: "Code Blocks",
           href: "/docs/code-blocks",
-        },
-        {
-          title: "Style Guide",
-          href: "/docs/style-guide",
-        },
-        {
-          title: "Search",
-          href: "/docs/in-progress",
-          disabled: true,
         },
       ],
     },
@@ -77,56 +50,6 @@ export const docsConfig: DocsConfig = {
       items: [
         {
           title: "Introduction",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Layouts",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Server Components",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Authentication",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Database with Prisma",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "API Routes",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-      ],
-    },
-    {
-      title: "Marketing Site",
-      items: [
-        {
-          title: "Introduction",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "File Structure",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Tailwind CSS",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Typography",
           href: "/docs/in-progress",
           disabled: true,
         },
