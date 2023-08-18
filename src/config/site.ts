@@ -8,6 +8,6 @@ export const siteConfig: SiteConfig = {
   ogImage: "",
   links: {
     twitter: "https://twitter.com/CShen1992",
-    github: "https://github.com/scy0208",
+    github: "https://github.com/scy0208/llm-feedback-monitor",
   },
 }

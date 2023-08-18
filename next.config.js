@@ -15,6 +15,15 @@ const nextConfig = {
           }
         ];
       },
+      async redirects() {
+        return [
+          {
+            source: "/docs",
+            destination: "/docs/api",
+            permanent: true,
+          },
+        ];
+      },
       reactStrictMode: true, 
       swcMinify: true
 }
