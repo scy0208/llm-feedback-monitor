@@ -4,38 +4,52 @@ import { Icons } from "@/components/icons"
     {
       features: [
         {
-          name: 'Wine Club Manager',
-          description: 'Explaining Wine club term, price, service, offering and benefit',
-          icon: Icons.chevronLeft,
+          name: '',
+          description: 'Give content-id, config-id the feedBack will be point to a specific Response and LLM config',
+          icon: Icons.chevronRight,
         },
         // ... other features from firstFeature.tsx
       ],
-      title: "Answering faster",
-      subTitle: "Your Digital Agent",
-      description:
-        "Armed with all your winery information, our AI agent is here to provide immediate answers to any of your winery-related questions.",
-      imageUrl: "https://d2aaddunp29031.cloudfront.net/digit-agent.png",
+      title: "Easy Integrate",
+      subTitle: "Simply Add Feedback by API",
+      imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature4.png",
       imageAlt: "Product screenshot",
       imageFirst: true
     },
     {
       features: [
         {
-          name: 'Wine Recommendation',
+          name: '',
           description:
-            'Asking smart questions to understand user preference and recommend the most suitable wine from your inventory.',
-          icon: Icons.chevronLeft,
+            'Monitoring the user feedback score changing of each version of your LLM config',
+          icon: Icons.chevronRight,
         },
         // ... other features from secondFeature.tsx
       ],
-      title: "Delivering wisdom",
-      subTitle: "Your AI Sommelier",
-      description:
-        "Using cutting-edge AI technology, our AI agent trained with wine knowledge and designed to answer wine questions",
-      imageUrl: "https://d2aaddunp29031.cloudfront.net/ai-som.png",
+      title: "Feedback Monitoring",
+      subTitle: "Monitor LLM Prompt and Model",
+      description: "",
+      imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature1.png",
       imageAlt: "Product screenshot",
       imageFirst: false
-    }
+    },
+    {
+        features: [
+          {
+            name: '',
+            description:
+              'Monitoring the user feedback score changing of each version of your LLM config',
+            icon: Icons.chevronRight,
+          },
+          // ... other features from secondFeature.tsx
+        ],
+        title: "Understand Feedback",
+        subTitle: "Feedback Analyze with Context",
+        description: "",
+        imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature2.png",
+        imageAlt: "Product screenshot",
+        imageFirst: true
+      }
   ];
   
   export function Features() {
