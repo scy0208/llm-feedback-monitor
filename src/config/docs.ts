@@ -4,12 +4,12 @@ export const docsConfig: DocsConfig = {
   mainNav: [
     {
       title: "Documentation",
-      href: "/docs",
+      href: "/docs/api",
     },
-    {
-      title: "Guides",
-      href: "/guides",
-    },
+    // {
+    //   title: "Guides",
+    //   href: "/guides",
+    // },
   ],
   sidebarNav: [
     {
@@ -19,30 +19,10 @@ export const docsConfig: DocsConfig = {
           title: "API",
           href: "/docs/api",
         },
-        {
-          title: "Code Blocks",
-          href: "/docs/code-blocks",
-        },
-      ],
-    },
-    {
-      title: "Blog",
-      items: [
-        {
-          title: "Introduction",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Build your own",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-        {
-          title: "Writing Posts",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
+        // {
+        //   title: "Code Blocks",
+        //   href: "/docs/code-blocks",
+        // },
       ],
     },
     {
@@ -53,6 +33,26 @@ export const docsConfig: DocsConfig = {
           href: "/docs/in-progress",
           disabled: true,
         },
+      ],
+    },
+    {
+      title: "Blog",
+      items: [
+        // {
+        //   title: "Introduction",
+        //   href: "/docs/in-progress",
+        //   disabled: true,
+        // },
+        // {
+        //   title: "Build your own",
+        //   href: "/docs/in-progress",
+        //   disabled: true,
+        // },
+        // {
+        //   title: "Writing Posts",
+        //   href: "/docs/in-progress",
+        //   disabled: true,
+        // },
       ],
     },
   ],
