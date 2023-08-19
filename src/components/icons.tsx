@@ -1,11 +1,14 @@
 import {
   AlertTriangle,
   ArrowRight,
+  Blocks,
+  BarChart3,
   Check,
   ChevronLeft,
   ChevronRight,
   Command,
   CreditCard,
+  Database,
   File,
   FileText,
   HelpCircle,
@@ -17,6 +20,7 @@ import {
   MoreVertical,
   Pizza,
   Plus,
+  Ruler,
   Settings,
   SunMedium,
   Trash,
@@ -78,5 +82,9 @@ export const Icons = {
   twitter: Twitter,
   check: Check,
   bot: Bot,
-  search: Search
+  search: Search,
+  blocks: Blocks,
+  barchart3: BarChart3,
+  ruler: Ruler,
+  database: Database
 }
