@@ -4,21 +4,6 @@ import { Flex } from "@radix-ui/themes"
 import { siteConfig } from "@/config/site"
 
 export function Hero() {
-    // const videoRef = useRef<HTMLVideoElement>(null);
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         // Ensure videoRef and videoRef.current are defined
-    //         if (videoRef && videoRef.current) {
-    //             videoRef.current.play();
-    //         }
-    //     }, 5000);
-
-    //     // Clean up timer on unmount
-    //     return () => clearTimeout(timer);
-    // }, []);
-
-
 
     return (
         <section className="relative h-auto bg-cover bg-center pb-8 pt-16" style={{ backgroundImage: "url(" + "https://hkaift.com/wp-content/uploads/2023/03/iStock-11609956481-2048x1152.jpg" + ")" }}>
@@ -32,7 +17,7 @@ export function Hero() {
                     <p className="mb-6 text-2xl">Seamlessly collect, analyze, and implement user feedback for better LLM performance.</p>
                     <Flex gap="3" align="center" justify="center">
                         <Link
-                            href="/login"
+                            href="/register"
                             className="inline-block rounded-lg bg-white px-8 py-3 font-semibold text-slate-700 transition-colors duration-300 hover:bg-slate-200 hover:text-black"
                         >
                             Get Started
