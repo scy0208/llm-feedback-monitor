@@ -1,11 +1,22 @@
 import { createClient } from '@/utils/supabase';
 import { Table } from '@radix-ui/themes';
 
+import { getCurrentUser } from "@/lib/session"
+import { redirect } from "next/navigation"
+import { authOptions } from "@/lib/auth"
+
 export default async function DashboardPage() {
+
+    const user = await getCurrentUser()
+
+    if (!user) {
+        redirect(authOptions?.pages?.signIn || "/login")
+    }
 
     const { data, error } = await createClient()
         .from('llm_config_summary_view')
         .select('*')
+        .eq('user_id', user.id);
 
     return (
         <Table.Root variant="surface">
