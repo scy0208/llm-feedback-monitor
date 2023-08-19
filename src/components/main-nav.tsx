@@ -36,7 +36,7 @@ export function MainNav({ items, children }: MainNavProps) {
               className={cn(
                 "flex items-center text-lg font-medium hover:text-foreground/80 sm:text-sm text-white",
                 item.href.startsWith(`/${segment}`)
-                  ? "text-foreground/60"
+                  ? "text-foreground/80"
                   : "text-white",
                 item.disabled && "cursor-not-allowed opacity-80"
               )}
