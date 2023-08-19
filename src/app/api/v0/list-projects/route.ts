@@ -7,7 +7,7 @@ export async function GET(req: Request, res: Response) {
         return new Response(null, { status: 200 });
     }
     let queryBuilder = createClient()
-        .from('Project')
+        .from('project')
         .select(`
       *
     `)

@@ -47,7 +47,7 @@ async function createFeedback(
     };
 
     const { data, error } = await createClient()
-        .from('Feedback')
+        .from('feedback')
         .upsert([dataToInsert])
         .select();
 

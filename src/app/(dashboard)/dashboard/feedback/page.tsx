@@ -20,8 +20,8 @@ export default async function FeedbackPage() {
         .from('feedback_by_project')
         .select(`
       *,
-      LLMConfig (*),
-      Content (*)`)
+      llm_config (*),
+      content (*)`)
         .eq('user_id', user.id);
 
     return (
@@ -39,7 +39,7 @@ export default async function FeedbackPage() {
             <Table.Body>
                 {data && data.length > 0 ? (
                     data.map((item) => {
-                        const config = JSON.stringify(item.LLMConfig.config)
+                        const config = JSON.stringify(item.llm_config.config)
                         return (
                             <Table.Row key={item.id}>
                                 <Table.Cell>{item.user}</Table.Cell>
@@ -47,8 +47,8 @@ export default async function FeedbackPage() {
                                 <Table.Cell>{item.score}</Table.Cell>
                                 <Table.Cell>
                                     <ContextPopup
-                                        groupID={item.Content.group_id}
-                                        content={item.Content.content}
+                                        groupID={item.content.group_id}
+                                        content={item.content.content}
                                     />
                                 </Table.Cell>
                                 <Table.Cell>{config}</Table.Cell>

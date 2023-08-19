@@ -23,7 +23,7 @@ async function insertProject(
     };
 
     const { data, error } = await createClient()
-        .from('Project')
+        .from('project')
         .insert([dataToInsert])
         .select();
 

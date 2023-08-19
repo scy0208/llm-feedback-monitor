@@ -30,7 +30,7 @@ async function insertContent(
     };
 
     const { data, error } = await createClient()
-        .from('Content')
+        .from('content')
         .insert([dataToInsert])
         .select();
 

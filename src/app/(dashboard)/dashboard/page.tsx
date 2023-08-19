@@ -20,7 +20,7 @@ export default async function ProjectPage() {
     }
 
     const { data, error } = await createClient()
-        .from('Project')
+        .from('project')
         .select(`*`)
         .eq('user_id', user.id);
 

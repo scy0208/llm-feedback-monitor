@@ -17,11 +17,11 @@ export async function GET(req: Request, res: Response) {
 
   // Construct the query, adding filters for the project_id and all other query parameters
   let queryBuilder = createClient()
-    .from('Feedback')
+    .from('feedback')
     .select(`
       *,
-      LLMConfig (*),
-      Content (*)
+      llm_config (*),
+      content (*)
     `)
     .eq('project_id', projectId);
 

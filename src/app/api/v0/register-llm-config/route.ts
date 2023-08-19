@@ -29,7 +29,7 @@ async function insertConfig(
     };
 
     const { data, error } = await createClient()
-        .from('LLMConfig')
+        .from('llm_Config')
         .upsert([dataToInsert])
         .select();
 

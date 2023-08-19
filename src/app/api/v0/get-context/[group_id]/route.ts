@@ -18,7 +18,7 @@ export async function GET(req: Request, res: Response) {
     const groupID = pathSegments[pathSegments.length - 1];
 
     let queryBuilder = createClient()
-        .from('Content')
+        .from('content')
         .select(`*`)
         .eq('group_id', groupID)
         .order('created_at', {
