@@ -14,7 +14,7 @@ export default async function DashboardPage() {
     }
 
     const { data, error } = await createClient()
-        .from('llm_config_summary_view')
+        .from('model_config_summary_view')
         .select('*')
         .eq('user_id', user.id);
 

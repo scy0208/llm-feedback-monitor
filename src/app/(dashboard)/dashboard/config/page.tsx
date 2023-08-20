@@ -15,7 +15,7 @@ export default async function DashboardPage() {
     }
 
     const { data, error } = await createClient()
-        .from('config_by_project')
+        .from('model_config_by_project')
         .select(`*`)
         .eq('user_id', user.id)
 
@@ -24,7 +24,7 @@ export default async function DashboardPage() {
             <Table.Header>
                 <Table.Row>
                     <Table.ColumnHeaderCell>LLM Config</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Config ID</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell>Config Name</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Project ID</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Created At</Table.ColumnHeaderCell>
                 </Table.Row>
@@ -37,7 +37,7 @@ export default async function DashboardPage() {
                         return (
                             <Table.Row key={index}>
                                 <Table.Cell>{config}</Table.Cell>
-                                <Table.Cell>{item.id}</Table.Cell>
+                                <Table.Cell>{item.name}</Table.Cell>
                                 <Table.Cell>{item.project_id}</Table.Cell>
                                 <Table.Cell>{item.created_at}</Table.Cell>
                             </Table.Row>

@@ -16,13 +16,14 @@ export default async function FeedbackPage() {
         redirect(authOptions?.pages?.signIn || "/login")
     }
 
+    console.log(user.id)
+
     const { data, error } = await createClient()
-        .from('feedback_by_project')
-        .select(`
-      *,
-      llm_config (*),
-      content (*)`)
+        .from('user_feedback_by_project')
+        .select('*')
         .eq('user_id', user.id);
+
+    console.log(data)
 
     return (
         <Table.Root variant="surface">
@@ -39,7 +40,7 @@ export default async function FeedbackPage() {
             <Table.Body>
                 {data && data.length > 0 ? (
                     data.map((item) => {
-                        const config = JSON.stringify(item.llm_config.config)
+                        const config = JSON.stringify(item.config)
                         return (
                             <Table.Row key={item.id}>
                                 <Table.Cell>{item.user}</Table.Cell>
@@ -47,8 +48,8 @@ export default async function FeedbackPage() {
                                 <Table.Cell>{item.score}</Table.Cell>
                                 <Table.Cell>
                                     <ContextPopup
-                                        groupID={item.content.group_id}
-                                        content={item.content.content}
+                                        groupID={item.group_id}
+                                        content={item.content}
                                     />
                                 </Table.Cell>
                                 <Table.Cell>{config}</Table.Cell>
