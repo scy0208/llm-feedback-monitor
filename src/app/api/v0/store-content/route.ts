@@ -6,13 +6,13 @@ type RequestData = {
     group_id?: string;
     created_by?: string;
     id?: string; // Allow ID to be optionally provided
-    config_id?: string
+    config_name?: string
 }
 
 export const runtime = 'edge';
 
 async function insertContent(
-    { content, project_id, created_by, group_id, config_id, id }: RequestData) {
+    { content, project_id, created_by, group_id, config_name, id }: RequestData) {
     if (!content) {
         throw new Error("Content is required");
     }
@@ -25,7 +25,7 @@ async function insertContent(
         project_id,
         group_id,
         created_by,
-        config_id,
+        config_name,
         ...(id ? { id } : {}), // Include the ID if provided, otherwise leave it undefined so that the database auto-generates it
     };
 

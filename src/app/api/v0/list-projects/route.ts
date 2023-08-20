@@ -8,9 +8,7 @@ export async function GET(req: Request, res: Response) {
     }
     let queryBuilder = createClient()
         .from('project')
-        .select(`
-      *
-    `)
+        .select(`*`)
 
     try {
         const { data, error } = await queryBuilder;

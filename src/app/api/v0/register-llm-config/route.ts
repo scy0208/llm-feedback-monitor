@@ -3,15 +3,15 @@ import { createClient } from '@/utils/supabase';
 type RequestData = {
     config: string,
     project_id: string,
-    id: string
+    name: string
 }
 
 export const runtime = 'edge';
 
 async function insertConfig(
-    { config, project_id, id }: RequestData) {
+    { config, project_id, name }: RequestData) {
 
-    if (!id) {
+    if (!name) {
         throw new Error("Id is required");
     }
 
@@ -25,7 +25,7 @@ async function insertConfig(
     const dataToInsert = {
         config,
         project_id,
-        ...(id ? { id } : {}), // Include the ID if provided, otherwise leave it undefined so that the database auto-generates it
+        ...(name ? { name } : {}), // Include the ID if provided, otherwise leave it undefined so that the database auto-generates it
     };
 
     const { data, error } = await createClient()
@@ -40,19 +40,20 @@ async function insertConfig(
     return data[0].id;
 }
 
+export async function OPTIONS(req: Request) {
+    return new Response(null, { status: 200 });
+}
+
 export async function PUT(req: Request) {
-    if(req.method == 'OPTIONS') {
-        return new Response(null, { status: 200 });
-    }
     
     try {
         const requestData = (await req.json()) as RequestData;
-        if (!requestData.id) {
-            return new Response(JSON.stringify({ message: 'Id in uuid format is required ' }), { status: 400 });
+        if (!requestData.project_id) {
+            return new Response(JSON.stringify({ message: 'project_id is required' }), { status: 400 });
         }
-        const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
-        if (!uuidRegex.test(requestData.id)) {
-            return new Response(JSON.stringify({ message: 'Invalid UUID format in id' }), { status: 400 });
+
+        if (!requestData.name) {
+            return new Response(JSON.stringify({ message: 'Config Name is required ' }), { status: 400 });
         }
 
         if (!requestData.config) {
@@ -63,10 +64,6 @@ export async function PUT(req: Request) {
             JSON.parse(requestData.config);
         } catch (e) {
             return new Response(JSON.stringify({ message: 'Invalid JSON content in config' }), { status: 400 });
-        }
-
-        if (!requestData.project_id) {
-            return new Response(JSON.stringify({ message: 'project_id is required' }), { status: 400 });
         }
 
         const id = await insertConfig(requestData);

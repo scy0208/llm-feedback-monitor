@@ -17,7 +17,7 @@ export async function GET(req: Request, res: Response) {
 
     // Construct the query, adding filters for the project_id and all other query parameters
     let queryBuilder = createClient()
-        .from('llm_config_summary_view')
+        .from('model_config_summary_view')
         .select('*')
         .eq('project_id', projectId);
 

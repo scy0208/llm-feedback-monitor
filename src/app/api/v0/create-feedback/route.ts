@@ -1,10 +1,7 @@
 import { createClient } from '@/utils/supabase';
 
 type RequestData = {
-    project_id: string,
-    config_id: string,
     content_id: string,
-    group_id?: string
     key: string,
     score: number,
     user?: string,
@@ -15,14 +12,8 @@ type RequestData = {
 export const runtime = 'edge';
 
 async function createFeedback(
-    { project_id, config_id, content_id, group_id, key, score, comment, user, id }: RequestData) {
+    { content_id, key, score, comment, user, id }: RequestData) {
 
-    if (!project_id) {
-        throw new Error("project_id is required");
-    }
-    if (!config_id) {
-        throw new Error("config_id is required");
-    }
     if (!content_id) {
         throw new Error("content_id is required");
     }
@@ -34,10 +25,7 @@ async function createFeedback(
     }
 
     const dataToInsert = {
-        project_id,
-        config_id,
         content_id,
-        group_id,
         key,
         score,
         comment,
@@ -47,7 +35,7 @@ async function createFeedback(
     };
 
     const { data, error } = await createClient()
-        .from('feedback')
+        .from('user_feedback')
         .upsert([dataToInsert])
         .select();
 
@@ -65,14 +53,6 @@ export async function OPTIONS(req: Request) {
 export async function PUT(req: Request) {
     try {
         const requestData = (await req.json()) as RequestData;
-        if (!requestData.project_id) {
-            return new Response(JSON.stringify({ message: 'Project_id is required ' }), { status: 400 });
-        }
-
-        if (!requestData.config_id) {
-            return new Response(JSON.stringify({ message: 'Config_id is required' }), { status: 400 });
-        }
-
         if (!requestData.content_id) {
             return new Response(JSON.stringify({ message: 'Content_id is required' }), { status: 400 });
         }
