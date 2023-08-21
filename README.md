@@ -103,3 +103,42 @@ In your UI component:
     <ThumbUpIcon />
 </button>
 ```
+
+
+```ts showLineNumbers
+                                                // Step 0 : initiate llm-feedback-client
+                                                import { Client } from 'llm-feedback-client'
+                                                const feedbackClient = new Client({
+                                                    projectId: 'YOUR_PROJECT_ID',
+                                                    apiKey: 'YOUR_API_KEY'
+                                                });
+
+                                                // Step 1: register config after every LLM change
+                                                feedbackClient.registerConfig({
+                                                    configName: "MY_LLM_CONFIG_VERSION_1", 
+                                                    config: {
+                                                        // put whatever you want here
+                                                        model,
+                                                        systemPrompt,
+                                                        temperature
+                                                    } 
+                                                })
+
+                                                // Step 2: Store Content with ID
+                                                feedbackClient.storeContent({
+                                                    content: aiGeneratedContent,
+                                                    configName: "MY_LLM_CONFIG_VERSION_1",
+                                                    id: aiContendId,
+                                                    groupId: conversationId, // group together the user-AI interation
+                                                    createdBy: user,
+                                                })
+
+                                                // Step 3: create Feedback using the ID
+                                                feedbackClient.createFeedback({
+                                                    contentId: aiContendId,
+                                                    key: "thumb_down",
+                                                    score: 1,
+                                                    user: "user",
+                                                    comment: "The content should be more detailed "
+                                                })
+```

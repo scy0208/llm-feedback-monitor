@@ -5,14 +5,24 @@ const featureConfigs = [
         features: [
             {
                 name: '',
-                description: 'Give content-id, config-id the feedBack will be point to a specific Response and LLM config',
+                description: 'Using our SDK, integrate into App in 3 steps',
+                icon: Icons.chevronRight,
+            },
+            {
+                name: '',
+                description: 'integrate easily with Vercel AI SDK and Langchain',
+                icon: Icons.chevronRight,
+            },
+            {
+                name: '',
+                description: 'More details in our documentation',
                 icon: Icons.chevronRight,
             },
             // ... other features from firstFeature.tsx
         ],
         title: "Easy Integrate",
         subTitle: "Simply Add Feedback by API",
-        imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature4.png",
+        imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature-intg.png",
         imageAlt: "Product screenshot",
         imageFirst: true
     },
