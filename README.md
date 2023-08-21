@@ -22,14 +22,10 @@ npm install llm-feedback-client@latest
 ```ts showLineNumbers {3}
 import { Client } from "llm-feedback-client"
 
-export default async function MyApp() {
-
-    const feedbackClient = new Client({
-        projectId: 'YOUR_PROJECT_ID',
-        apiKey: 'YOUR_API_KEY'
-    });
-
-}
+const feedbackClient = new Client({
+    projectId: 'YOUR_PROJECT_ID',
+    apiKey: 'YOUR_API_KEY'
+});
 ```
 
 ## Register your LLM config:
