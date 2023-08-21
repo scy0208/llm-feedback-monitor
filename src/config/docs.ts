@@ -4,17 +4,17 @@ export const docsConfig: DocsConfig = {
   mainNav: [
     {
       title: "Documentation",
-      href: "/docs/api",
+      href: "/docs/get-start",
     },
-    // {
-    //   title: "Guides",
-    //   href: "/guides",
-    // },
   ],
   sidebarNav: [
     {
       title: "Documentation",
       items: [
+        {
+          title: "Get Start",
+          href: "/docs/get-start",
+        },
         {
           title: "API",
           href: "/docs/api",

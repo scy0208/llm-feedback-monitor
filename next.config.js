@@ -19,7 +19,7 @@ const nextConfig = {
         return [
           {
             source: "/docs",
-            destination: "/docs/api",
+            destination: "/docs/get-start",
             permanent: true,
           },
         ];
