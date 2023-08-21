@@ -58,7 +58,6 @@ export default async function callLLM(request: Request) {
     })
     ...
 }
-
 ```
 
 ## Store user input and AI generated content:
