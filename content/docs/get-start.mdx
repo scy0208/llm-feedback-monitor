@@ -40,29 +40,30 @@ export default async function MyApp() {
 ## Register your LLM config:
 ```ts showLineNumbers
 
-export default async function callOpenAI(request: Request) {
-    const systemPrompt = { 
+export default async function callLLM(request: Request) {
+    const systemSetting = { 
         role: "system", 
-        content: "You are professinal laywer with abundent legal knowledge" +  
+        content: "You are a knowledgable assistant helping Intellectual Property Practitioners understand other domain knowledges." +  
         "Follow the user\'s instructions carefully. Respond using markdown." + 
         "at the end of your response highlight that please ask user to click feedback button"
     }
+    const temperature = 0.7
+    const model = process.env.OPENAI_GPT_MODEL
 
-    const modelTemprature = 0.7
-    
-    const configName = "YOUR_LLM_CONFIG_VERSION_NAME"
+    const configName = "VERSION_DOMAIN_08-20"
 
     await feedbackClient.registerConfig({
-        // Put what ever you want here
-        configName
-        systemPrompt,
-        modelTemprature
-        ...
+        configName, 
+        config: {
+            // put whatever you want here
+            model,
+            systemSetting,
+            temperature
+        } 
     })
     ...
 }
 
-```
 
 ## Store user input and AI generated content:
 `id` can be used in link a feedback to a specific content.
