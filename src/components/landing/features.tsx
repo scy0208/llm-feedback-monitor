@@ -4,18 +4,18 @@ const featureConfigs = [
     {
         features: [
             {
-                name: '',
-                description: 'Using our SDK, integrate into App in 3 steps',
+                name: 'Using our SDK, integrate into App in 3 steps',
+                description: '',
                 icon: Icons.chevronRight,
             },
             {
-                name: '',
-                description: 'integrate easily with Vercel AI SDK and Langchain',
+                name: 'integrate easily with Vercel AI SDK and Langchain',
+                description: '',
                 icon: Icons.chevronRight,
             },
             {
-                name: '',
-                description: 'More details in our documentation',
+                name: 'More details in our documentation',
+                description: '',
                 icon: Icons.chevronRight,
             },
             // ... other features from firstFeature.tsx
@@ -29,26 +29,33 @@ const featureConfigs = [
     {
         features: [
             {
-                name: '',
-                description:
-                    'Monitoring the user feedback score changing of each version of your LLM config',
+                name: 'Monitoring the realtime user feedback on each version of your LLM config',
+                description: '',
                 icon: Icons.chevronRight,
             },
-            // ... other features from secondFeature.tsx
+            {
+                name: 'CSAT (user satisfaction rate) tracking',
+                description: '',
+                icon: Icons.chevronRight,
+            },
         ],
         title: "Feedback Monitoring",
         subTitle: "Monitor LLM Prompt and Model",
         description: "",
-        imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature1.png",
+        imageUrl: "https://d2aaddunp29031.cloudfront.net/feature-dashboard2.png",
         imageAlt: "Product screenshot",
         imageFirst: false
     },
     {
         features: [
             {
-                name: '',
-                description:
-                    'Monitoring the user feedback score changing of each version of your LLM config',
+                name: 'Go through each feedback with details',
+                description: '',
+                icon: Icons.chevronRight,
+            },
+            {
+                name: 'Understand the context and AI-User interations of a specific feedback',
+                description: '',
                 icon: Icons.chevronRight,
             },
             // ... other features from secondFeature.tsx
