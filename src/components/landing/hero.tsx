@@ -14,7 +14,7 @@ export function Hero() {
             <div className="container relative z-10 mx-auto flex flex-col items-center justify-center px-4 h-screen">
                 <div className="animate-fade-in-down pt-10 mb-6 text-center text-white">
                     <h1 className="mb-4 text-5xl font-bold md:text-7xl">Collecting USER Feedback Easily</h1>
-                    <p className="mb-6 text-2xl">So that you can adjust yout Model and Prompts to the direction your USER want.</p>
+                    <p className="mb-6 text-2xl">So that you can tailor your model to align with user preferences.</p>
                     <Flex gap="3" align="center" justify="center">
                         <Link
                             href="/register"
