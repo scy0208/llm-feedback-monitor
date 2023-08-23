@@ -35,7 +35,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: siteConfig.ogImage,
+    url: siteConfig.url,
+    images: [{
+        url: siteConfig.ogImage,
+     }],
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
@@ -44,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.jpg`],
+    images: [`${siteConfig.ogImage}`],
     creator: "@CShen1992",
   },
   icons: {
