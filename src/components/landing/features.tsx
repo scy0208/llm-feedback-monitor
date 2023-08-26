@@ -21,7 +21,7 @@ const featureConfigs = [
             // ... other features from firstFeature.tsx
         ],
         title: "Easy Integrate",
-        subTitle: "Simply Add Feedback by API",
+        subTitle: "Add feedback collecting system in lines of code",
         imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature-intg.png",
         imageAlt: "Product screenshot",
         imageFirst: true
@@ -40,7 +40,7 @@ const featureConfigs = [
             },
         ],
         title: "Feedback Monitoring",
-        subTitle: "Monitor LLM Prompt and Model",
+        subTitle: "Monitor realtime feedback performance each model setting",
         description: "",
         imageUrl: "https://d2aaddunp29031.cloudfront.net/feature-dashboard2.png",
         imageAlt: "Product screenshot",
@@ -49,7 +49,7 @@ const featureConfigs = [
     {
         features: [
             {
-                name: 'Go through each feedback with details',
+                name: 'Go through each feedback with context details',
                 description: '',
                 icon: Icons.chevronRight,
             },
