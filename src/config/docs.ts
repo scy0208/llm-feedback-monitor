@@ -16,6 +16,10 @@ export const docsConfig: DocsConfig = {
           href: "/docs/get-start",
         },
         {
+          title: "Integrate with Vercel AI SDK",
+          href: "/docs/vercel-ai-sdk-integration",
+        },
+        {
           title: "API",
           href: "/docs/api",
         },

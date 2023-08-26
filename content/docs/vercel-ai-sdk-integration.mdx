@@ -1,0 +1,145 @@
+---
+title: Integrate with Vercel AI SDK
+description: How to integrate llm-feedback with Vercel AI SDK
+---
+
+# Introduction
+The [Vercel AI SDK](https://vercel.com/blog/introducing-the-vercel-ai-sdk) is an [open-source](https://github.com/vercel/ai) library designed to help developers build conversational, streaming, and chat user interfaces in JavaScript and TypeScript. The SDK supports React/Next.js, Svelte/SvelteKit, with support for Nuxt/Vue coming soon.
+With the help of llm-feedback-client we can easily intergate a feedback collecting system into any App built with Vercel AI SDK. There are only two place and four steps needed:
+1. install llm-feedback-client library
+2. Register a config with a configName at the LLM call out API Route
+3. store the user input and LLM complete at API Route's callback
+4. Add a feedback UI component
+We will use the [Next.js AI Chatbot](https://vercel.com/templates/next.js/nextjs-ai-chatbot)'s [code](https://github.com/vercel-labs/ai-chatbot) as an example. 
+This [PR](https://github.com/scy0208/ai-chatbot/pull/1/files) also explained everything.
+
+
+## Register and create project
+Go to https://www.llmfeedback.com/register, connect your github account, and create a new project in the dashboard
+
+## Install llm-feedback-client NodeJS SDK
+````mdx
+npm install llm-feedback-client@latest
+````
+
+## Create a client 
+```ts showLineNumbers {3}
+import { Client } from "llm-feedback-client"
+
+const feedbackClient = new Client({
+    projectId: 'YOUR_PROJECT_ID',
+    apiKey: 'YOUR_API_KEY' // Just use any string for now
+});
+```
+
+## Register config, store the user input and LLM complete in the POST funciton of app/api/chat/route.ts
+```ts showLineNumbers {3}
+export async function POST(req: Request) {
+  const json = await req.json()
+  const { messages, previewToken, id} = json
+  const userId = (await auth())?.user.id
+
+  if (!userId) {
+    return new Response('Unauthorized', {
+      status: 401
+    })
+  }
+
+  if (previewToken) {
+    configuration.apiKey = previewToken
+  }
+
+  const llmConfig = {
+    // put anything related your model setting here
+    model: 'gpt-3.5-turbo',
+    temperature: 0.7,
+    stream: true
+  }
+
+  const configName = "VERCEL_AI_2023-08-25"
+
+  // register LLM config
+  await feedebackClient.registerConfig({
+    configName, 
+    config: llmConfig
+  })
+
+  // store user input
+  await feedebackClient.storeContent({
+    content: messages[messages.length - 1].content,
+    configName: "VERCEL_AI_2023-08-25",
+    groupId: id,
+    createdBy: userId
+  })
+
+  const res = await openai.createChatCompletion({
+    ...llmConfig,
+    messages
+  })
+
+  const stream = OpenAIStream(res, {
+    // store LLM compelete at onCompletion() callback handler
+    async onCompletion(completion) {
+      const title = json.messages[0].content.substring(0, 100)
+      const id = json.id ?? nanoid()
+      const createdAt = Date.now()
+      const path = `/chat/${id}`
+      // AI content id is a hash from content, project_id and time
+      const aiContentId = feedebackClient.contentUUID(completion, new Date(createdAt))
+
+      const payload = {
+        id,
+        title,
+        userId,
+        createdAt,
+        path,
+        messages: [
+          ...messages,
+          {
+            content: completion,
+            role: 'assistant',
+            // createdAt field is needed in order to fetch content ID in frontend
+            createdAt: new Date(createdAt)
+          }
+        ]
+      }
+      await kv.hmset(`chat:${id}`, payload)
+      await kv.zadd(`user:chat:${userId}`, {
+        score: createdAt,
+        member: `chat:${id}`
+      })
+      await feedebackClient.storeContent({
+        content: completion,
+        id: aiContentId,
+        configName,
+        groupId: id,
+        createdBy: 'assistant'
+      })
+    }
+  })
+
+  return new StreamingTextResponse(stream)
+}
+
+```
+
+## Add a feedback UI at components/chat-message.tsx
+```ts showLineNumbers {3}
+{message.role=='assistant'&& (
+    <div>
+        <Button onClick={(event) => {
+            feedebackClient.createFeedback({
+                contentId: feedebackClient.contentUUID(message.content, message.createdAt),
+                key: "thumb_up",
+                score: 1,
+                comment: "great content",
+                user: "user"
+            });
+        }}>
+            thumbup
+        </Button>
+    </div>
+      )}
+```
+
+
