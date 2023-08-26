@@ -6,10 +6,12 @@ description: How to integrate llm-feedback with Vercel AI SDK
 # Introduction
 The [Vercel AI SDK](https://vercel.com/blog/introducing-the-vercel-ai-sdk) is an [open-source](https://github.com/vercel/ai) library designed to help developers build conversational, streaming, and chat user interfaces in JavaScript and TypeScript. The SDK supports React/Next.js, Svelte/SvelteKit, with support for Nuxt/Vue coming soon.
 With the help of llm-feedback-client we can easily intergate a feedback collecting system into any App built with Vercel AI SDK. There are only two place and four steps needed:
-1. install llm-feedback-client library
-2. Register a config with a configName at the LLM call out API Route
-3. store the user input and LLM complete at API Route's callback
-4. Add a feedback UI component
+
+- install llm-feedback-client library
+- Register a config with a configName at the LLM call out API Route
+- store the user input and LLM complete at API Route's callback
+- Add a feedback UI component
+
 We will use the [Next.js AI Chatbot](https://vercel.com/templates/next.js/nextjs-ai-chatbot)'s [code](https://github.com/vercel-labs/ai-chatbot) as an example. 
 This [PR](https://github.com/scy0208/ai-chatbot/pull/1/files) also explained everything.
 
