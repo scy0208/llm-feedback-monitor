@@ -25,6 +25,11 @@ export const dashboardConfig: DashboardConfig = {
         icon: "folderOpenDot",
       },
       {
+        title: "Outage monitor",
+        href: "/dashboard/monitor",
+        icon: "activity",
+      },
+      {
         title: "Config",
         href: "/dashboard/config",
         icon: "settings",

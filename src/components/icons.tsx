@@ -1,6 +1,7 @@
 import {
   AlertTriangle,
   ArrowRight,
+  Activity,
   Blocks,
   BarChart3,
   Check,
@@ -42,6 +43,7 @@ export type Icon = LucideIcon
 
 export const Icons = {
   logo: ThumbsUp,
+  activity: Activity,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
