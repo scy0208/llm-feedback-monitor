@@ -30,6 +30,11 @@ export const dashboardConfig: DashboardConfig = {
         icon: "activity",
       },
       {
+        title: "Query Deepdive",
+        href: "/dashboard/query",
+        icon: "microscope",
+      },
+      {
         title: "Config",
         href: "/dashboard/config",
         icon: "settings",

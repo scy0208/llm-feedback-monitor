@@ -21,28 +21,6 @@ export default async function DashboardPage() {
         .select('*')
         .eq('project_id', 'proj_H1VnkAuFsGnaB9eykx_P0');
 
-    const feedbacks1 = [
-        {
-            key: "ThumbUp",
-            totalScore: 109,
-        },
-        {
-            key: "ThumbDown",
-            totalScore: 48,
-        },
-    ];
-
-    const feedbacks2 = [
-        {
-            key: "ThumbUp",
-            totalScore: 3,
-        },
-        {
-            key: "ThumbDown",
-            totalScore: 1,
-        },
-    ];
-
     return (
         <>
             <Heading size="7" className="pb-5">Automatic Bad Answer Detection</Heading>

@@ -36,6 +36,7 @@ import {
   TestTubes,
   Unplug,
   CopyPlus,
+  Microscope,
   type LucideIcon 
 } from "lucide-react"
 
@@ -67,6 +68,7 @@ export const Icons = {
   thumbsup: ThumbsUp,
   folderOpenDot: FolderOpenDot,
   messagesSquare: MessagesSquare,
+  microscope: Microscope,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
