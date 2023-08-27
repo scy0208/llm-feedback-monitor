@@ -4,63 +4,63 @@ const featureConfigs = [
     {
         features: [
             {
-                name: 'Using our SDK, integrate into App in 3 steps',
-                description: '',
+                name: 'Seamless SDK Integration',
+                description: 'Embed into your App effortlessly with just 3 steps.',
                 icon: Icons.chevronRight,
             },
             {
-                name: 'integrate easily with Vercel AI SDK and Langchain',
-                description: '',
+                name: 'Compatibility with Vercel AI SDK and Langchain',
+                description: 'Ensure a smooth integration process with our adaptable SDKs.',
                 icon: Icons.chevronRight,
             },
             {
-                name: 'More details in our documentation',
-                description: '',
+                name: 'Comprehensive Documentation',
+                description: 'Find all the information you need to integrate seamlessly in our user-friendly documentation.',
                 icon: Icons.chevronRight,
             },
             // ... other features from firstFeature.tsx
         ],
-        title: "Easy Integrate",
-        subTitle: "Add feedback collecting system in lines of code",
+        title: "Effortless Integration",
+        subTitle: "Embed a feedback collection system with a few lines of code",
         imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature-intg.png",
-        imageAlt: "Product screenshot",
+        imageAlt: "An illustration of the integration process",
         imageFirst: true
     },
     {
         features: [
             {
-                name: 'Monitoring the realtime user feedback on each version of your LLM config',
-                description: '',
+                name: 'Real-time Feedback on LLM Configurations',
+                description: 'Monitor user feedback for every iteration of your LLM settings to ensure optimal performance.',
                 icon: Icons.chevronRight,
             },
             {
-                name: 'CSAT (user satisfaction rate) tracking',
-                description: '',
+                name: 'User Satisfaction Rate (CSAT) Tracking',
+                description: 'Measure and analyze user satisfaction rates to continuously refine your AI model.',
                 icon: Icons.chevronRight,
             },
         ],
         title: "Feedback Monitoring",
-        subTitle: "Monitor realtime feedback performance each model setting",
-        description: "",
+        subTitle: "Real-time tracking of user feedback for each model configuration",
+        description: "Gain insights into user perceptions and improve your AI system's efficiency and effectiveness.",
         imageUrl: "https://d2aaddunp29031.cloudfront.net/feature-dashboard2.png",
-        imageAlt: "Product screenshot",
+        imageAlt: "A view of the feedback monitoring dashboard",
         imageFirst: false
     },
     {
         features: [
             {
-                name: 'Real-time Detect and flag unsatisfactory AI responses Monitoring',
-                description: '',
+                name: 'Real-time Answer Monitoring',
+                description: 'Detect and flag unsatisfactory AI responses as they occur. (WIP)',
                 icon: Icons.chevronRight,
             },
             {
-                name: 'Discover potential weaknesses in your AI model configuration',
-                description: '',
+                name: 'Insightful Feedback on Model Efficiency',
+                description: 'Highlight potential weaknesses in your AI model configuration and knowledge base to ensure optimal performance.',
                 icon: Icons.chevronRight,
             },
             {
-                name: `Spot and collect user questions that aren't addressed in your existing test cases`,
-                description: '',
+                name: 'Identification of Uncovered Queries',
+                description: 'Spot and log user questions that aren\'t addressed in your existing test cases to continuously enhance system comprehension.',
                 icon: Icons.chevronRight,
             },
         ],
@@ -70,28 +70,49 @@ const featureConfigs = [
         imageUrl: "https://d2aaddunp29031.cloudfront.net/outage-monitor.png",
         imageAlt: "A screenshot of the product interface",
         imageFirst: true
-    },
+    }, 
     {
         features: [
             {
-                name: 'Go through each feedback with context details',
-                description: '',
+                name: 'Highlight Frequent User Queries',
+                description: 'Identify the most common user queries, allowing you to prioritize and focus on key content.',
                 icon: Icons.chevronRight,
             },
             {
-                name: 'Understand the context and AI-User interations of a specific feedback',
-                description: '',
+                name: 'Labeling & Classification of User Queries',
+                description: 'Efficiently categorize and label user queries for better data organization and analysis.',
                 icon: Icons.chevronRight,
             },
             // ... other features from secondFeature.tsx
         ],
-        title: "Understand Feedback",
-        subTitle: "Feedback Analyze with Context",
-        description: "",
+        title: "User Query Analysis",
+        subTitle: "Deep Dive into User Interactions and Questions",
+        description: "Enhance your understanding of user inquiries by analyzing frequency, patterns, and context.",
         imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature2.png",
-        imageAlt: "Product screenshot",
+        imageAlt: "An illustration of user query analysis",
         imageFirst: false
-    }
+    },
+    {
+        features: [
+            {
+                name: 'Comprehensive Feedback Review',
+                description: 'Delve into each feedback with detailed contextual information for a holistic understanding.',
+                icon: Icons.chevronRight,
+            },
+            {
+                name: 'Insight into AI-User Interactions',
+                description: 'Gain clarity on specific feedback by exploring the interactions between the AI and the user.',
+                icon: Icons.chevronRight,
+            },
+            // ... other features from secondFeature.tsx
+        ],
+        title: "Feedback Insights",
+        subTitle: "Analyze Feedback Within Its Context",
+        description: "Deepen your understanding of user feedback by diving into the specific contexts and interactions that generated them.",
+        imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature2.png",
+        imageAlt: "An illustration of feedback analysis",
+        imageFirst: true
+    }    
 ];
 
 export function Features() {
