@@ -88,7 +88,7 @@ const featureConfigs = [
         title: "User Query Analysis",
         subTitle: "Deep Dive into User Interactions and Questions",
         description: "Enhance your understanding of user inquiries by analyzing frequency, patterns, and context.",
-        imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature2.png",
+        imageUrl: "https://d2aaddunp29031.cloudfront.net/query-analysis.png",
         imageAlt: "An illustration of user query analysis",
         imageFirst: false
     },
