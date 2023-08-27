@@ -49,6 +49,31 @@ const featureConfigs = [
     {
         features: [
             {
+                name: 'Real-time Detect and flag unsatisfactory AI responses Monitoring',
+                description: '',
+                icon: Icons.chevronRight,
+            },
+            {
+                name: 'Discover potential weaknesses in your AI model configuration',
+                description: '',
+                icon: Icons.chevronRight,
+            },
+            {
+                name: `Spot and collect user questions that aren't addressed in your existing test cases`,
+                description: '',
+                icon: Icons.chevronRight,
+            },
+        ],
+        title: "Outage Detection",
+        subTitle: "Automatically identify and label subpar AI responses",
+        description: "Ensure the quality and reliability of your AI system by monitoring and rectifying inaccuracies.",
+        imageUrl: "https://d2aaddunp29031.cloudfront.net/outage-monitor.png",
+        imageAlt: "A screenshot of the product interface",
+        imageFirst: true
+    },
+    {
+        features: [
+            {
                 name: 'Go through each feedback with context details',
                 description: '',
                 icon: Icons.chevronRight,
@@ -65,7 +90,7 @@ const featureConfigs = [
         description: "",
         imageUrl: "https://d2aaddunp29031.cloudfront.net/llm-feature2.png",
         imageAlt: "Product screenshot",
-        imageFirst: true
+        imageFirst: false
     }
 ];
 
