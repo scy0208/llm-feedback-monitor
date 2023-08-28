@@ -7,7 +7,9 @@ export const siteConfig: SiteConfig = {
   url: "https://llmfeedback.com/",
   ogImage: "https://llmfeedback.com/og.jpg",
   links: {
-    twitter: "https://twitter.com/CShen1992",
+    twitter: "https://twitter.com/llmfeedback",
     github: "https://github.com/scy0208/llm-feedback-monitor",
+    slack: "https://join.slack.com/t/llmfeedback/shared_invite/zt-222kimu7p-mlLkpk3lhLIaUPpHpeJBMQ",
+    discord: "https://discord.gg/hhdYxjBs"
   },
 }

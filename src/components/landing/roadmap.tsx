@@ -9,35 +9,25 @@ interface Feature {
 
 const features: Feature[] = [
     {
-        name: 'Feedback UI SDK',
-        description: 'Feedback SDK integrate into your UI easily',
+        name: 'Feedback UI Kit',
+        description: 'Easily integrate a feedback UI component into your application with our SDK.',
         icon: "blocks"
     },
     {
-        name: 'Better LLM Intergration',
-        description: 'Backend call Integrate with Vercel AI SDK, OpenAI node library',
-        icon: "blocks"
+        name: 'Langchain JS Integration',
+        description: 'Seamlessly connect your backend with the Langchain framework.',
+        icon: "unplug"
     },
     {
-        name: 'Usage & Cost calculatiion',
-        description: 'Good model setting is alway the balance of user feedback and performance.',
-        icon: "barchart3"
+        name: 'Python SDK Support',
+        description: 'Enhance your Python applications with our dedicated Python SDK integration.',
+        icon: "copyPlus"
     },
     {
-        name: 'More Metrics',
-        description: 'More metrics on user feedback data',
-        icon: "ruler"
-    },
-    {
-        name: 'Reporting',
-        description: 'Generate Report to deliver to your customer',
-        icon: "post"
-    },
-    {
-        name: 'Data Selection',
-        description: 'Add AI response content with good user feedback into yout own dataset',
-        icon: "database"
-    },
+        name: 'Curated Testing Datasets',
+        description: 'Building production-verified, user-labeled datasets for testing, continuous integration, deployment, and model fine-tuning.',
+        icon: "testTubes"
+    }  
 ]
 
 export function Roadmap() {

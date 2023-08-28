@@ -20,7 +20,42 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               SpringSun Technologies LLC
             </a>
-            .
+            . The source code is available on{" "}
+            <a
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              GitHub
+            </a>
+            . Please Follow our{" "}
+            <a
+              href={siteConfig.links.twitter}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              Twitter
+            </a>
+            . Join our{" "}
+            <a
+              href={siteConfig.links.slack}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              Slack
+            </a>
+            {" "}and our{" "}
+            <a
+              href={siteConfig.links.discord}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              Discord
+            </a>
           </p>
         </div>
       </div>
