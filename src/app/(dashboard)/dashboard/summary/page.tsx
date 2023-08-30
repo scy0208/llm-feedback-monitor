@@ -35,11 +35,11 @@ export default async function DashboardPage() {
     const feedbacks2 = [
         {
             key: "ThumbUp",
-            totalScore: 3,
+            totalScore: 25,
         },
         {
             key: "ThumbDown",
-            totalScore: 1,
+            totalScore: 7,
         },
     ];
 
