@@ -65,7 +65,7 @@ const featureConfigs = [
             },
         ],
         title: "Outage Detection",
-        subTitle: "Automatically identify and label subpar AI responses (WIP)",
+        subTitle: "Identify bad AI responses (WIP)",
         description: "Ensure the quality and reliability of your AI system by monitoring and rectifying inaccuracies.",
         imageUrl: "https://d2aaddunp29031.cloudfront.net/outage-monitor.png",
         imageAlt: "A screenshot of the product interface",
@@ -86,7 +86,7 @@ const featureConfigs = [
             // ... other features from secondFeature.tsx
         ],
         title: "User Query Analysis",
-        subTitle: "Deep Dive into User Interactions and Questions (WIP)",
+        subTitle: "Find most popular questions",
         description: "Enhance your understanding of user inquiries by analyzing frequency, patterns, and context.",
         imageUrl: "https://d2aaddunp29031.cloudfront.net/query-analysis.png",
         imageAlt: "An illustration of user query analysis",
