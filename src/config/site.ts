@@ -4,7 +4,7 @@ export const siteConfig: SiteConfig = {
   name: "LLM Feedback",
   description:
     "Effortlessly gather user feedback on AI-generated content and tailor your model to align with user preferences.",
-  url: "https://llmfeedback.com/",
+  url: "https://llmfeedback.com",
   ogImage: "https://llmfeedback.com/og.jpg",
   links: {
     twitter: "https://twitter.com/llmfeedback",

@@ -50,3 +50,9 @@ export type DocsConfig = {
 export type MarketingConfig = {
   mainNav: MainNavItem[]
 }
+
+
+export type Project = {
+  id: string,
+  name: string,
+}

@@ -49,6 +49,8 @@ const chartdata = [
   };
 
 export function ConfigCSAT({ configName, feedbackData }: any) {
+
+  
     return (
         <Card>
             <Title>User Satisfaction Score</Title>

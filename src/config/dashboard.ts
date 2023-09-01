@@ -24,16 +24,16 @@ export const dashboardConfig: DashboardConfig = {
         href: "/dashboard/summary",
         icon: "folderOpenDot",
       },
-      {
-        title: "Outage monitor",
-        href: "/dashboard/monitor",
-        icon: "activity",
-      },
-      {
-        title: "Query Deepdive",
-        href: "/dashboard/query",
-        icon: "microscope",
-      },
+      // {
+      //   title: "Outage monitor",
+      //   href: "/dashboard/monitor",
+      //   icon: "activity",
+      // },
+      // {
+      //   title: "Query Deepdive",
+      //   href: "/dashboard/query",
+      //   icon: "microscope",
+      // },
       {
         title: "Config",
         href: "/dashboard/config",
