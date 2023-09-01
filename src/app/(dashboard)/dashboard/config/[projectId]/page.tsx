@@ -14,7 +14,6 @@ export default async function DashboardPage({ params }: { params: { projectId: s
         redirect(authOptions?.pages?.signIn || "/login")
     }
 
-    console.log("url: " + params.projectId)
 
     const { data, error } = await createClient()
         .from('model_config_by_project')

@@ -16,7 +16,6 @@ export default async function FeedbackPage({ params }: { params: { projectId: st
         redirect(authOptions?.pages?.signIn || "/login")
     }
 
-    console.log(user.id)
 
     const { data, error } = await createClient()
         .from('user_feedback_by_project')
