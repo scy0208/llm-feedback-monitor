@@ -1,6 +1,7 @@
 import {
   AlertTriangle,
   ArrowRight,
+  Activity,
   Blocks,
   BarChart3,
   Check,
@@ -35,6 +36,7 @@ import {
   TestTubes,
   Unplug,
   CopyPlus,
+  Microscope,
   type LucideIcon 
 } from "lucide-react"
 
@@ -42,6 +44,7 @@ export type Icon = LucideIcon
 
 export const Icons = {
   logo: ThumbsUp,
+  activity: Activity,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
@@ -65,6 +68,7 @@ export const Icons = {
   thumbsup: ThumbsUp,
   folderOpenDot: FolderOpenDot,
   messagesSquare: MessagesSquare,
+  microscope: Microscope,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
