@@ -23,8 +23,6 @@ export default async function FeedbackPage({ params }: { params: { projectId: st
         .select('*')
         .eq('project_id', params.projectId);
 
-    console.log(data)
-
     return (
         <Table.Root variant="surface">
             <Table.Header>

@@ -20,7 +20,6 @@ export function NewProjectButton({userID}: Props) {
       }
 
     async function onSubmit(data: any) {
-        console.log(data.name)
         const res = await fetch("/api/v0/register-project", {
             method: 'PUT',
             headers: {

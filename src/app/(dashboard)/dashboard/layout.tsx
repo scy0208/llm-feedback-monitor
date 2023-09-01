@@ -25,7 +25,6 @@ export default async function DashboardLayout({
   if (!user) {
     return notFound()
   }
-  console.log(user)
 
   const { data, error } = await createClient()
     .from('project')
