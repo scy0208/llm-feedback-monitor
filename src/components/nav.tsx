@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import { SidebarNavItem } from "@/types"
 import { cn } from "@/lib/utils"
@@ -23,10 +23,6 @@ export function DashboardNav({ items, projects}: DashboardNavProps) {
   if (!items?.length) {
     return null
   }
-
-  useEffect(() => {
-    console.log("selected " + projectId)
-  }, [projectId])
 
   return (
     <nav className="grid items-start gap-2">

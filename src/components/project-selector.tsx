@@ -1,8 +1,5 @@
 "use client"
 
-import { redirect } from "next/navigation"
-import { createClient } from '@/utils/supabase';
-
 import { Select } from '@radix-ui/themes';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -34,7 +31,7 @@ export function ProjectSelector({ projects, projectId, setProjectId }: ProjectSe
                 <Select.Group>
                     <Select.Label>Projects</Select.Label>
                     {Object.entries(projects).map(([id, name]) => (
-                        <Select.Item value={id}>{name}</Select.Item>
+                        <Select.Item key={id} value={id}>{name}</Select.Item>
                     ))}
                 </Select.Group>
             </Select.Content>
