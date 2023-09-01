@@ -24,10 +24,6 @@ export default async function DashboardPage({ params }: { params: { projectId: s
         .select('*')
         .eq('project_id', params.projectId);
 
-        console.log("test data")
-        console.log(data)
-
-
     const feedbacks = data?.reduce((acc, item) => {
         if (!acc[item.name]) {
             acc[item.name] = [];
