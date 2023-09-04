@@ -22,7 +22,7 @@ Please create a project at https://www.llmfeedback.com/dashboard, get the projec
 curl --location 'localhost:3000/api/v0/evaluate' \
 --header 'Content-Type: text/plain' \
 --data '{
-    "project_id":"proj_lh6MboyMgJmsTU9mXxU_W",
+    "project_id":"YOUR_PROJECT_ID",
     "instruction": "Please list the GDP in 2017, 2018, 2019 for Zhejiang and Guangdong. result should be given in a markdown table",
     "response": "| Province  | 2017 GDP (trillion CNY) | 2018 GDP (trillion CNY) | 2019 GDP (trillion CNY) |\n|-----------|-------------------------|-------------------------|-------------------------|\n| Zhejiang  | 5.17                    | 5.62                    | 6.02                    |\n| Guangdong | 8.99                    | 9.73                    | 10.5                    |"
 }'
