@@ -29,24 +29,23 @@ export const docsConfig: DocsConfig = {
         // },
       ],
     },
-    {
-      title: "Dashboard",
-      items: [
-        {
-          title: "Introduction",
-          href: "/docs/in-progress",
-          disabled: true,
-        },
-      ],
-    },
+    // {
+    //   title: "Dashboard",
+    //   items: [
+    //     {
+    //       title: "Introduction",
+    //       href: "/docs/in-progress",
+    //       disabled: true,
+    //     },
+    //   ],
+    // },
     {
       title: "Blog",
       items: [
-        // {
-        //   title: "Introduction",
-        //   href: "/docs/in-progress",
-        //   disabled: true,
-        // },
+        {
+          title: "Evolving AI Product Through Feedback Insights",
+          href: "/blogs/evolve-ai-product-through-feedback-insights",
+        },
         // {
         //   title: "Build your own",
         //   href: "/docs/in-progress",

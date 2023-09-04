@@ -1,0 +1,66 @@
+---
+title: Evolve AI Product Through Feedback Insights
+description: How we helpe Prometheus-GPT evolve the product using insights from user feedback and analyzing AI-user interactions.
+---
+
+We recently collaborated with the Prometheus-GPT team to refine their product experience using the LLMFeedback platform.
+
+# Background
+Prometheus-GPT is an AI assistant tailored for Intellectual Property (IP) practitioners, 
+boasting capabilities to probe patent databases. Serving over 80 users, 
+it handles approximately 200 queries daily. Initially, without a clear understanding of how IP law firms might utilize the assistant, 
+the development team implemented a general prompt with the ability of patent database inquiries.
+
+The initial configuration was:
+```json
+{
+  "model":"gpt-3.5-turbo-0613",
+  "prompt":"You are ChatGPT, a large language model trained by OpenAI. Follow the user's instructions carefully. Respond using markdown. You can search the patent db if the user asks patent-related questions",
+  "temperature":1.2
+}
+```
+
+However, following complaints from users regarding AI responses that frequently required multiple interactions for clarity, the Prometheus-GPT team sought our expertise 
+to ascertain whether the issues were isolated or widespread. 
+They integrated our LLMFeedback API, which provided a user-friendly interface, including thumbs-up and thumbs-down buttons for users to quickly assess AI responses. 
+With the help of the SDK, the integration required just an hour's worth of code modifications.
+<img src="https://d2aaddunp29031.cloudfront.net/UI-Integrate.png" alt="Image alt" />
+
+
+# Assessment
+Within a few weeks, we gathered 157 feedback entries: 109 positive and 48 negative, culminating in an average user satisfaction score score of 69%. 
+Analyzing the feedback, we discerned that most queries pertained to domain knowledge comprehension. 
+This insight prompted the Prometheus-GPT team to recalibrate the prompt to encapsulate domain-specific knowledge succinctly and clearly. 
+They also rectified the “hallucination effect” some users reported by reducing the temperature setting.
+
+With these updates, the team register the updated LLM model setting as the following. Nameing the config as `VERSION_2023-08-15`. 
+```json
+{
+  "model":"gpt-3.5-turbo-0613",
+  "systemSetting":{
+    "role":"system",
+    "content":"You are a knowledgable assistant helping Intellectual Property Practitioners understand domain knowledges. Follow the user's instructions carefully. Respond using markdown. Please explain domain knowledges in simple and plain language. Please search patent database of the questions is patent related. At the end of your response highlight that please ask user to click feedback button"
+  },
+  "temperature":0.7
+}
+```
+
+# Enhancements Realized
+Post-adjustments, the subsequent two weeks witnessed a marked improvement. 
+Of the feedback collected, there were 28 positive responses and only 7 negatives, 
+improving the user satisfaction score to 80%. This progress is visually represented in our dashboard.
+<img src="https://d2aaddunp29031.cloudfront.net/prometheus-prompt-version-summary.png" alt="Image alt" />
+
+# Current Initiatives
+By looking into the unsatisfied AI responses. it was evident that many bad responses were linked to failed patent searches. The root cause is that the 
+patent database missed one year of data which made patent query on that year all failed. We are working on a new feature that automatically 
+helping the Prometheus-GPT team discover bad AI responses so that the team can be aware of the situation as early as possible.
+
+# Next step
+With the end to end experience working with Prometheus-GPT team, we find that automatically label and categorize the user query can be a critical feature
+for the team, discover user behavior pattern as early as possible will help the team arrange the resource and dedicate more engineering effort to align with what
+most users cares about. We are working on that now. 
+
+Our comprehensive experience with the Prometheus-GPT team has revealed the significance of auto-labeling and categorizing user queries. 
+Identifying user behavior patterns early can allow the team to allocate resources and intensify efforts in areas that users cares most. 
+This feature development is currently underway.
