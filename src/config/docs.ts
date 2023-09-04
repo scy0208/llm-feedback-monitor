@@ -23,6 +23,10 @@ export const docsConfig: DocsConfig = {
           title: "API",
           href: "/docs/api",
         },
+        {
+          title: "Evaluate API",
+          href: "/docs/evaluate-api",
+        },
         // {
         //   title: "Code Blocks",
         //   href: "/docs/code-blocks",

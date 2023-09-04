@@ -1,0 +1,73 @@
+---
+title: Evaluate API 
+description: Evaluate the instruction is fully followed by the response
+---
+
+# Introduction
+Evaluate API is POST API helps evaluate the instruction is fully followed by the response.
+Here are the necessary parameters in the POST body
+| Parameter      | Description                                              |
+|------------|----------------------------------------------------------|
+| `project_id`  | Your project, you can create one at https://www.llmfeedback.com/dashboard  |
+| `instruction`   | The instruction you want to evaluate      |
+| `response` |   The response you want to evaluate                      |
+
+# Create Your Project
+Please create a project at https://www.llmfeedback.com/dashboard, get the project_id
+
+# Sample API Request
+
+### Example of a fully executed response to a instructions.
+```bash
+curl --location 'localhost:3000/api/v0/evaluate' \
+--header 'Content-Type: text/plain' \
+--data '{
+    "project_id":"proj_lh6MboyMgJmsTU9mXxU_W",
+    "instruction": "Please list the GDP in 2017, 2018, 2019 for Zhejiang and Guangdong. result should be given in a markdown table",
+    "response": "| Province  | 2017 GDP (trillion CNY) | 2018 GDP (trillion CNY) | 2019 GDP (trillion CNY) |\n|-----------|-------------------------|-------------------------|-------------------------|\n| Zhejiang  | 5.17                    | 5.62                    | 6.02                    |\n| Guangdong | 8.99                    | 9.73                    | 10.5                    |"
+}'
+```
+response
+```json
+{
+    "result": true,
+    "reason": "The instruction is fully followed. The response provides the GDP in 2017, 2018, and 2019 for Zhejiang and Guangdong in a markdown table format."
+}
+```
+
+
+### Example of the response failed to give actual GDP values
+```bash
+curl --location 'https://api.llmfeedback.com/api/v0/evaluate' \
+--header 'Content-Type: text/plain' \
+--data '{
+    "project_id":"YOUR_PROJECT_ID",
+    "instruction": "Please list the GDP in 2017, 2018, 2019 for Zhejiang",
+    "response": "Zhejiang:\n\n2017: not too much\n2018: grow a little bit from 2017\n2019: a lot"
+}'
+```
+Response
+```json
+{
+    "result":false,
+    "reason":"The instruction is not fully followed. The response does not provide the actual GDP values for Zhejiang in 2017, 2018, and 2019."
+}
+```
+
+### Example of the response failed to give requested format
+```bash
+curl --location 'https://api.llmfeedback.com/api/v0/evaluate' \
+--header 'Content-Type: text/plain' \
+--data '{
+    "project_id":"YOUR_PROJECT_ID",
+    "instruction": "Please list the GDP in 2017, 2018, 2019 for Zhejiang and Guangdong. result should be given in a markdown table",
+    "response": "Zhejiang:\n\n2017: Approximately 5.17 trillion CNY\n2018: Approximately 5.62 trillion CNY\n2019: Approximately 6.02 trillion CNY\nGuangdong:\n\n2017: Approximately 8.99 trillion CNY\n2018: Approximately 9.73 trillion CNY\n2019: Approximately 10.5 trillion CNY"
+}'
+```
+Response
+```json
+{
+    "result": false,
+    "reason": "The response is not in markdown table format."
+}
+```
