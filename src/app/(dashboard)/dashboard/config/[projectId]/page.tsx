@@ -16,7 +16,7 @@ export default async function DashboardPage({ params }: { params: { projectId: s
 
 
     const { data, error } = await createClient()
-        .from('model_config_by_project')
+        .from('model_config')
         .select(`*`)
         .eq('project_id', params.projectId)
 
