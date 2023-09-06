@@ -83,3 +83,4 @@ model Project {
 
   @@map(name: "projects")
 }
+
