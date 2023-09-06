@@ -25,6 +25,20 @@ async function checkProject(projectId: string) {
     return { data, error };
 }
 
+async function storeContent(instruction: string, response: string, result: string) {
+    
+    const dataToInsert = {
+        instruction,
+        response,
+        result // Include the ID if provided, otherwise leave it undefined so that the database auto-generates it
+    };
+    
+    await createClient()
+        .from('evaluate')
+        .insert([dataToInsert])
+        .select();
+}
+
 export async function OPTIONS(req: Request) {
     return new Response(null, { status: 200 });
 }
@@ -74,6 +88,7 @@ export async function POST(request: Request) {
     try {
         parsedContent = JSON.parse(content);
         console.log(parsedContent);
+        storeContent(instruction, response, parsedContent);
         return new Response(JSON.stringify(parsedContent), { status: 200 });
     } catch (error) {
         console.error('Content is not in JSON format:', error);
