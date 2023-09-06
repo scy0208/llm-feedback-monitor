@@ -36,7 +36,7 @@ async function createFeedback(
 
     const { data, error } = await createClient()
         .from('user_feedback')
-        .upsert([dataToInsert])
+        .upsert([dataToInsert], { onConflict: 'content_id,user' })
         .select();
 
     if (error || !data || data.length === 0) {
