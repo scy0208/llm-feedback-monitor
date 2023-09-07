@@ -35,7 +35,7 @@ async function insertContent(
         project_id,
         id: id+"-response",
         group_id,
-        created_by,
+        created_by: "assistant",
         config_name,
     };
 
