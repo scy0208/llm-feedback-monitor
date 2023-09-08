@@ -19,7 +19,7 @@ const nextConfig = {
         return [
           {
             source: "/docs",
-            destination: "/docs/get-start",
+            destination: "/docs/get-start-with-python-sdk",
             permanent: true,
           },
         ];

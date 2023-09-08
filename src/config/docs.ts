@@ -4,7 +4,7 @@ export const docsConfig: DocsConfig = {
   mainNav: [
     {
       title: "Documentation",
-      href: "/docs/get-start",
+      href: "/docs/get-start-with-python-sdk",
     },
   ],
   sidebarNav: [
@@ -12,8 +12,12 @@ export const docsConfig: DocsConfig = {
       title: "Documentation",
       items: [
         {
-          title: "Get Start",
-          href: "/docs/get-start",
+          title: "Get Start With Python SDK",
+          href: "/docs/get-start-with-python-sdk",
+        },
+        {
+          title: "Get Start With Javascript SDK",
+          href: "/docs/get-start-with-js-sdk",
         },
         {
           title: "Integrate with Vercel AI SDK",
