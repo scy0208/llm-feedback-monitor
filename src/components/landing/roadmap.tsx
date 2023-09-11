@@ -9,25 +9,15 @@ interface Feature {
 
 const features: Feature[] = [
     {
-        name: 'Feedback UI Kit',
-        description: 'Easily integrate a feedback UI component into your application with our SDK.',
+        name: 'Topic Analysis',
+        description: 'Automatically extract topics and intents, identify the most common user queries and user intent',
         icon: "blocks"
     },
     {
-        name: 'Langchain JS Integration',
-        description: 'Seamlessly connect your backend with the Langchain framework.',
+        name: 'Testing dataset compeletion',
+        description: 'Compelete you testing and benchmark pre-production datasets with latest and high frequency user questions',
         icon: "unplug"
     },
-    {
-        name: 'Python SDK Support',
-        description: 'Enhance your Python applications with our dedicated Python SDK integration.',
-        icon: "copyPlus"
-    },
-    {
-        name: 'Curated Testing Datasets',
-        description: 'Building production-verified, user-labeled datasets for testing, continuous integration, deployment, and model fine-tuning.',
-        icon: "testTubes"
-    }  
 ]
 
 export function Roadmap() {

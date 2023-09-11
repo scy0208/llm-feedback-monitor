@@ -15,10 +15,12 @@ export function Hero() {
             {/* <!-- Hero Content --> */}
             <div className="container relative z-10 mx-auto flex flex-col items-center justify-center px-4 h-screen">
                 <div className="animate-fade-in-down mb-6 text-center text-white">
-                    <h1 className="mb-4 text-5xl font-bold md:text-7xl">Collecting User Feedback on AI Generated Content Easily</h1>
-                    <p className="mb-6 text-2xl">So that you can tailor your model to align with user preferences.</p>
+                    <h1 className="mb-4 text-5xl font-bold md:text-7xl">Unleash the power of conversational data</h1>
+                    <p className="mb-6 text-2xl">
+                      Analyze customer-AI interactions to refine the user experience and align the AI with business objectives.
+                    </p>
                     <div className="flex justify-center items-center">
-                    <Grid columns="2" gap="3" className="w-96">
+                    <Grid columns="3" gap="3">
                         <Link
                             href="/register"
                             className="inline-block rounded-lg bg-white px-8 py-3 font-semibold text-slate-700 transition-colors duration-300 hover:bg-slate-200 hover:text-black"
@@ -26,12 +28,12 @@ export function Hero() {
                             Get Started
                         </Link>
 
-                        <Link
+                        {/* <Link
                             href={siteConfig.links.github}
                             className="inline-block rounded-lg bg-sky-800 border border-slate-400 flex justify-center pt-2 font-semibold text-white transition-colors duration-300 hover:bg-cyan-700 hover:text-white"
                             target="_blank">
                             <Icon icon="octicon:logo-github-16" color="white" width="75" height="32" />
-                        </Link>
+                        </Link> */}
 
                         <Link
                             href={siteConfig.links.slack}

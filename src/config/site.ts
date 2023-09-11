@@ -10,6 +10,6 @@ export const siteConfig: SiteConfig = {
     twitter: "https://twitter.com/llmfeedback",
     github: "https://github.com/scy0208/llm-feedback-monitor",
     slack: "https://join.slack.com/t/llmfeedback/shared_invite/zt-222kimu7p-mlLkpk3lhLIaUPpHpeJBMQ",
-    discord: "https://discord.gg/hhdYxjBs"
+    discord: "https://discord.gg/9SfdPsS9"
   },
 }
