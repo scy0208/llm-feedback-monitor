@@ -6,18 +6,18 @@ const featureConfigs = [
             {
                 "name": "Unified Logging",
                 "description": "Versionize and log your LLM change in one API call",
-                "icon": "Icons.chevronRight"
+                "icon": Icons.chevronRight
             },
             {
                 "name": "Metrics Categorization",
                 "description": "Categorize all metrics to each version of LLM",
-                "icon": "Icons.chevronRight"
+                "icon": Icons.chevronRight
             }
         ],
         "title": "Versionize LLM Setting",
         "subTitle": "Record every iteration of your LLM setting",
         "description": "Ensure full traceability and transparency with every change in your LLM setting. With the versioning feature, you can now track, measure, and analyze every tweak seamlessly.",
-        "imageUrl": "https://d2aaddunp29031.cloudfront.net/feature-dashboard2.png",
+        "imageUrl": "https://d2aaddunp29031.cloudfront.net/llm-config-version.png",
         "imageAlt": "A view of the feedback monitoring dashboard",
         "imageFirst": true
     },
@@ -102,7 +102,7 @@ const featureConfigs = [
         "title": "Developer Friendly",
         "subTitle": "Easily integrated with top AI frameworks",
         "description": "Our suite offers out-of-the-box integration with major development platforms, ensuring you dive into a frictionless development experience.",
-        "imageUrl": "https://d2aaddunp29031.cloudfront.net/feature-dashboard2.png",
+        "imageUrl": "https://d2aaddunp29031.cloudfront.net/llm-feature-intg.png",
         "imageAlt": "A view of the developer integration dashboard",
         "imageFirst": true
     }
