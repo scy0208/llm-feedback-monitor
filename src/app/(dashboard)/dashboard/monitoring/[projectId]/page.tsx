@@ -1,11 +1,12 @@
 import { createClient } from '@/utils/supabase';
-import { Table, Grid, Heading, Section } from '@radix-ui/themes';
+import { Table, Grid, Heading } from '@radix-ui/themes';
 
 import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
 import { authOptions } from "@/lib/auth"
 
 import { Monitor } from "@/components/charts/monitor";
+import { ConfigSelector } from "@/components/config-selector";
 
 
 export default async function DashboardPage() {
@@ -23,7 +24,8 @@ export default async function DashboardPage() {
 
     return (
         <>
-            <Heading size="7" className="pb-5">Automatic Bad Answer Detection</Heading>
+            <Heading size="7" className="pb-5">Failed Query Detection</Heading>
+            <ConfigSelector/>
             <Grid columns="2" gap="3" width="auto">
                 <div>
                     <Heading size="5" className="pb-5">General</Heading>
@@ -31,13 +33,15 @@ export default async function DashboardPage() {
                 </div>
                 <div>
                     <Heading size="5" className="pb-5">Details</Heading>
+                    <div className="overflow-y-auto h-[445px] rounded-lg">
                     <Table.Root variant="surface">
                     <Table.Header>
                         <Table.Row>
-                            <Table.ColumnHeaderCell>Content</Table.ColumnHeaderCell>
+                            <Table.ColumnHeaderCell>Failed Quries</Table.ColumnHeaderCell>
                             <Table.ColumnHeaderCell>Config Name</Table.ColumnHeaderCell>
                         </Table.Row>
                     </Table.Header>
+                
                     <Table.Body>
                         {data && data.length > 0 ? (
                             data.map((item, index) => {
@@ -54,7 +58,9 @@ export default async function DashboardPage() {
                             </Table.Row>
                         )}
                     </Table.Body>
+        
                 </Table.Root>
+                </div>
             </div>
             </Grid>
         </>

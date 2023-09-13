@@ -1,6 +1,7 @@
 import { Icons } from "@/components/icons"
 
 const featureConfigs = [
+
     {
         "features": [
             {
@@ -14,98 +15,98 @@ const featureConfigs = [
                 "icon": Icons.chevronRight
             }
         ],
-        "title": "Versionize LLM Setting",
-        "subTitle": "Record every iteration of your LLM setting",
-        "description": "Ensure full traceability and transparency with every change in your LLM setting. With the versioning feature, you can now track, measure, and analyze every tweak seamlessly.",
+        "title": "Development Stage",
+        "subTitle": "Versionize every iteration of your LLM setting",
+        "description": "Ensure full traceability and transparency with every change in your LLM setting. Tracking, measuring, and analyzing every tweak seamlessly.",
         "imageUrl": "https://d2aaddunp29031.cloudfront.net/llm-config-version.png",
-        "imageAlt": "A view of the feedback monitoring dashboard",
-        "imageFirst": true
-    },
-    {
-        features: [
-            {
-                name: 'Real-time Feedback Tracking',
-                description: 'Monitor user feedback for every iteration of your LLM settings to ensure optimal performance.',
-                icon: Icons.chevronRight,
-            },
-            {
-                name: 'Real-time User Satisfaction Rate Tracking',
-                description: 'Measure and analyze user satisfaction rates to continuously refine your AI model.',
-                icon: Icons.chevronRight,
-            },
-        ],
-        title: "Feedback Monitoring",
-        subTitle: "Real-time tracking of user feedback and satisfaction",
-        description: "Gain insights into user perceptions and improve your AI system's efficiency and effectiveness.",
-        imageUrl: "https://d2aaddunp29031.cloudfront.net/feature-dashboard2.png",
-        imageAlt: "A view of the feedback monitoring dashboard",
-        imageFirst: false
-    },
-    {
-        features: [
-            {
-                name: 'Real-time Answer Monitoring',
-                description: 'Detect and flag unsatisfactory AI responses to track Fallback Rate',
-                icon: Icons.chevronRight,
-            },
-            {
-                name: 'Identification of Uncovered Queries',
-                description: 'Spot and log user instructions that aren\'t addressed in your existing test cases to continuously enhance system comprehension.',
-                icon: Icons.chevronRight,
-            },
-            {
-                name: 'Insightful Feedback on Model Efficiency',
-                description: 'Highlight potential weaknesses in your AI model configuration and knowledge base to ensure optimal performance.',
-                icon: Icons.chevronRight,
-            },
-        ],
-        title: "Defect Detection",
-        subTitle: "Identify bad AI responses",
-        description: "Ensure the quality and reliability of your AI system by monitoring and rectifying inaccuracies.",
-        imageUrl: "https://d2aaddunp29031.cloudfront.net/outage-monitor.png",
-        imageAlt: "A screenshot of the product interface",
-        imageFirst: true
-    }, 
-    {
-        "features": [
-            {
-                "name": "Goal Completion Tracker",
-                "description": "Sentiment Analysis on each conversation to track Goal completion",
-                "icon": "Icons.chevronRight"
-            },
-            {
-                "name": "Emotion Detection",
-                "description": "Identify and categorize the emotions present in each conversation for deeper insights.",
-                "icon": "Icons.chevronRight"
-            }
-        ],
-        "title": "Sentiment Analysis",
-        "subTitle": "Real-time Conversation Sentiment Analysis",
-        "description": "Harness the power of AI to analyze sentiments in real-time. Understand your audience's emotions and gain actionable insights from every conversation.",
-        "imageUrl": "https://d2aaddunp29031.cloudfront.net/feature-dashboard2.png",
-        "imageAlt": "A view of the Sentiment Analysis dashboard",
+        "imageAlt": "A view of the versionize dashboard",
         "imageFirst": false
     },
     {
-        "features": [
+        features: [
             {
-                "name": "JS and Python SDK",
-                "description": "Seamless integration into your projects with dedicated SDKs for JavaScript and Python.",
-                "icon": "Icons.chevronRight"
+                name: 'Unified Feedback API',
+                description: 'Easily integrate this API into your products, client portals, or internal dashboards, allowing stakeholders to evaluate your content from diverse angles.',
+                icon: Icons.chevronRight,
             },
             {
-                "name": "Vercel AI, Langchain and LamaIndex supporting",
-                "description": "Direct compatibility with leading AI frameworks like Vercel AI, Langchain, and LamaIndex to streamline your development.",
-                "icon": "Icons.chevronRight"
+                name: 'Multi-Level Feedback Analytics',
+                description: 'Utilize feedback data across various layers, deriving unique insights from internal teams, clients, or end-users; real-time CSAT tracking, and data labeling for iterative product development.',
+                icon: Icons.chevronRight,
             }
         ],
-        "title": "Developer Friendly",
-        "subTitle": "Easily integrated with top AI frameworks",
-        "description": "Our suite offers out-of-the-box integration with major development platforms, ensuring you dive into a frictionless development experience.",
-        "imageUrl": "https://d2aaddunp29031.cloudfront.net/llm-feature-intg.png",
-        "imageAlt": "A view of the developer integration dashboard",
-        "imageFirst": true
+        title: "Evaluation Phase",
+        subTitle: "Seamless Feedback API Integration",
+        description: "Incorporate feedback or manual tagging features for internal evaluation teams, client partners, or end-users through a single API call.",
+        imageUrl: "https://d2aaddunp29031.cloudfront.net/feature_feedback-ui_1.png",
+        imageAlt: "Feedback UI Overview",
+        imageFirst: true
     }
+    // {
+    //     features: [
+    //         {
+    //             name: 'Real-time Answer Monitoring',
+    //             description: 'Detect and flag unsatisfactory AI responses to track Fallback Rate',
+    //             icon: Icons.chevronRight,
+    //         },
+    //         {
+    //             name: 'Identification of Uncovered Queries',
+    //             description: 'Spot and log user instructions that aren\'t addressed in your existing test cases to continuously enhance system comprehension.',
+    //             icon: Icons.chevronRight,
+    //         },
+    //         {
+    //             name: 'Insightful Feedback on Model Efficiency',
+    //             description: 'Highlight potential weaknesses in your AI model configuration and knowledge base to ensure optimal performance.',
+    //             icon: Icons.chevronRight,
+    //         },
+    //     ],
+    //     title: "Defect Detection",
+    //     subTitle: "Identify bad AI responses",
+    //     description: "Ensure the quality and reliability of your AI system by monitoring and rectifying inaccuracies.",
+    //     imageUrl: "https://d2aaddunp29031.cloudfront.net/outage-monitor.png",
+    //     imageAlt: "A screenshot of the product interface",
+    //     imageFirst: true
+    // }, 
+    // {
+    //     "features": [
+    //         {
+    //             "name": "Goal Completion Tracker",
+    //             "description": "Sentiment Analysis on each conversation to track Goal completion",
+    //             "icon": "Icons.chevronRight"
+    //         },
+    //         {
+    //             "name": "Emotion Detection",
+    //             "description": "Identify and categorize the emotions present in each conversation for deeper insights.",
+    //             "icon": "Icons.chevronRight"
+    //         }
+    //     ],
+    //     "title": "Sentiment Analysis",
+    //     "subTitle": "Real-time Conversation Sentiment Analysis",
+    //     "description": "Harness the power of AI to analyze sentiments in real-time. Understand your audience's emotions and gain actionable insights from every conversation.",
+    //     "imageUrl": "https://d2aaddunp29031.cloudfront.net/feature-dashboard2.png",
+    //     "imageAlt": "A view of the Sentiment Analysis dashboard",
+    //     "imageFirst": false
+    // },
+    // {
+    //     "features": [
+    //         {
+    //             "name": "JS and Python SDK",
+    //             "description": "Seamless integration into your projects with dedicated SDKs for JavaScript and Python.",
+    //             "icon": "Icons.chevronRight"
+    //         },
+    //         {
+    //             "name": "Vercel AI, Langchain and LamaIndex supporting",
+    //             "description": "Direct compatibility with leading AI frameworks like Vercel AI, Langchain, and LamaIndex to streamline your development.",
+    //             "icon": "Icons.chevronRight"
+    //         }
+    //     ],
+    //     "title": "Developer Friendly",
+    //     "subTitle": "Easily integrated with top AI frameworks",
+    //     "description": "Our suite offers out-of-the-box integration with major development platforms, ensuring you dive into a frictionless development experience.",
+    //     "imageUrl": "https://d2aaddunp29031.cloudfront.net/llm-feature-intg.png",
+    //     "imageAlt": "A view of the developer integration dashboard",
+    //     "imageFirst": true
+    // }
     
 ];
 

@@ -14,6 +14,11 @@ const features: Feature[] = [
         icon: "blocks"
     },
     {
+        name: 'User Journey Analysis',
+        description: 'Categorize user journey and identify the different user journey patterns',
+        icon: "shuffle"
+    },
+    {
         name: 'Testing dataset compeletion',
         description: 'Compelete you testing and benchmark pre-production datasets with latest and high frequency user questions',
         icon: "unplug"
@@ -26,13 +31,13 @@ export function Roadmap() {
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     <div>
-                        <h2 className="text-base font-semibold leading-7 text-indigo-600">We need your advice</h2>
+                        <h2 className="text-base font-semibold leading-7 text-indigo-600">We are also evolving</h2>
                         <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Future Roadmap</p>
                         <p className="mt-6 text-base leading-7 text-gray-600">
-                            This project is at really early stage, our goal is to provide a easist integrated system with deepest analytics ability. We need your ideas and advices
+                            This project is at early stage, our goal is to provide a easist integrated system with deepest analytics ability.
                         </p>
                     </div>
-                    <dl className="col-span-2 grid grid-cols-1 gap-x-8 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:gap-y-16">
+                    <dl className="col-span-2 flex flex-col gap-x-8 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:gap-y-16">
                         {features.map((feature) => {
                             const Icon = Icons[feature.icon || "arrowRight"]
                             return (

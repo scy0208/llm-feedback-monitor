@@ -46,4 +46,50 @@ export const dashboardConfig: DashboardConfig = {
       },
     ],
   }
+
+// export const dashboardConfig: DashboardConfig = {
+//   mainNav: [
+//     {
+//       title: "Documentation",
+//       href: "/docs/get-start",
+//     },
+//     {
+//       title: "Support",
+//       href: "/support",
+//       disabled: true,
+//     },
+//   ],
+//   sidebarNav: [
+//     {
+//       title: "Projects",
+//       href: "/dashboard",
+//       icon: "post",
+//     },
+//     {
+//       title: "Configs",
+//       href: "/dashboard/config",
+//       icon: "settings",
+//     },
+//     {
+//       title: "Metrics",
+//       href: "/dashboard/metrics",
+//       icon: "settings",
+//     },
+//     {
+//       title: "Monitoring",
+//       href: "/dashboard/monitoring",
+//       icon: "thumbsup",
+//     },
+//     {
+//       title: "Analysis",
+//       href: "/dashboard/analysis",
+//       icon: "thumbsup",
+//     },
+//     {
+//       title: "Datasets",
+//       href: "/dashboard/feedback",
+//       icon: "thumbsup",
+//     },
+//   ],
+// }
   

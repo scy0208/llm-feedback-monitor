@@ -15,9 +15,9 @@ export function Hero() {
             {/* <!-- Hero Content --> */}
             <div className="container relative z-10 mx-auto flex flex-col items-center justify-center px-4 h-screen">
                 <div className="animate-fade-in-down mb-6 text-center text-white">
-                    <h1 className="mb-4 text-5xl font-bold md:text-7xl">Unleash the power of conversational data</h1>
+                    <h1 className="mb-4 text-5xl font-bold md:text-7xl">Unlock the potential of your AI assistant</h1>
                     <p className="mb-6 text-2xl">
-                      Analyze customer-AI interactions to refine the user experience and align the AI with business objectives.
+                        Get insights from user interaction, evolve your AI assistant with all the tools you need
                     </p>
                     <div className="flex justify-center items-center">
                     <Grid columns="3" gap="3">

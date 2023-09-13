@@ -37,6 +37,7 @@ import {
   Unplug,
   CopyPlus,
   Microscope,
+  Shuffle,
   type LucideIcon 
 } from "lucide-react"
 
@@ -69,6 +70,8 @@ export const Icons = {
   folderOpenDot: FolderOpenDot,
   messagesSquare: MessagesSquare,
   microscope: Microscope,
+  shuffle: Shuffle,
+
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
