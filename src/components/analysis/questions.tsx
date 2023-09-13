@@ -29,32 +29,34 @@ const questions: QuestionData[] = [
     { question: "What is your policy on chargebacks?", sessions: 37 }
 ];
 
-export default () => (
-  <Card className="gap-5">
-    <Flex className="pb-8" justifyContent="start" alignItems="center">
-        <Title>Most Common Queries</Title>
-    </Flex>
-    <Select>
-        <SelectItem value="1">
-          Payment Issues
-        </SelectItem>
-        <SelectItem value="2">
-          Meters
-        </SelectItem>
-        <SelectItem value="3">
-          Miles
-        </SelectItem>
-        <SelectItem value="4">
-          Nautical Miles
-        </SelectItem>
-      </Select>
-    <List className="overflow-y-auto h-[520px]">
-      {questions.map((item) => (
-        <ListItem key={item.question}>
-          <span>{item.question}</span>
-          <span>{item.sessions}</span>
-        </ListItem>
-      ))}
-    </List>
-  </Card>
-);
+export default function Questions() {
+    return (
+        <Card className="gap-5">
+            <Flex className="pb-8" justifyContent="start" alignItems="center">
+                <Title>Most Common Queries</Title>
+            </Flex>
+            <Select>
+                <SelectItem value="1">
+                    Payment Issues
+                </SelectItem>
+                <SelectItem value="2">
+                    Meters
+                </SelectItem>
+                <SelectItem value="3">
+                    Miles
+                </SelectItem>
+                <SelectItem value="4">
+                    Nautical Miles
+                </SelectItem>
+            </Select>
+            <List className="overflow-y-auto h-[520px]">
+                {questions.map((item) => (
+                    <ListItem key={item.question}>
+                        <span>{item.question}</span>
+                        <span>{item.sessions}</span>
+                    </ListItem>
+                ))}
+            </List>
+        </Card>
+    )
+};
