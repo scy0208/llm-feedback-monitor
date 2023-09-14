@@ -12,6 +12,11 @@ const title = {
   subtitle: "Offering comprehensive tools to monitor and analyze Human-AI interactions after deployment."
 };
 
+// const title = {
+//   title: "Unlock the potential of your AI assistant",
+//   subtitle: "Get insights from user interaction, evolve your AI assistant with all the tools you need"
+// };
+
 const features = [
   {
     title: 'Key Metrics',

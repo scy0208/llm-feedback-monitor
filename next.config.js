@@ -51,6 +51,12 @@ const nextConfig = {
             hostname: 'd2aaddunp29031.cloudfront.net',
             port: '',
             pathname: '/feature_analysis-0.png',
+          },
+          {
+            protocol: 'https',
+            hostname: 'd2aaddunp29031.cloudfront.net',
+            port: '',
+            pathname: '/og.jpg',
           }
         ],
       },

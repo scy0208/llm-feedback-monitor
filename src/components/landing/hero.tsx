@@ -5,6 +5,11 @@ import { Grid } from "@radix-ui/themes"
 import { siteConfig } from "@/config/site"
 import { Icon } from '@iconify/react';
 
+const title = {
+    title: "Unlock the potential of your AI assistant",
+    subtitle: "Get insights from user interaction, evolve your AI assistant with all the tools you need"
+  };
+
 export function Hero() {
 
     return (
@@ -15,9 +20,9 @@ export function Hero() {
             {/* <!-- Hero Content --> */}
             <div className="container relative z-10 mx-auto flex flex-col items-center justify-center px-4 h-screen">
                 <div className="animate-fade-in-down mb-6 text-center text-white">
-                    <h1 className="mb-4 text-5xl font-bold md:text-7xl">Unlock the potential of your AI assistant</h1>
+                    <h1 className="mb-4 text-5xl font-bold md:text-7xl">{title.title}</h1>
                     <p className="mb-6 text-2xl">
-                        Get insights from user interaction, evolve your AI assistant with all the tools you need
+                        {title.subtitle}
                     </p>
                     <div className="flex justify-center items-center">
                     <Grid columns="3" gap="3">
