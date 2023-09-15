@@ -3,6 +3,7 @@ import '@radix-ui/themes/styles.css';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { siteConfig } from "@/config/site"
+import GoogleAnalytics from '@/components/google-analytics';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,10 @@ export const metadata: Metadata = {
     "User",
     "Feedback",
     "LLM",
-    "RLHF",
+    "User Analytics",
+    "sentiment analysis",
+    "topic analysis",
+    "user journey",
   ],
   authors: [
     {
@@ -66,6 +70,7 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body className={inter.className}>{children}</body>
+        <GoogleAnalytics GA_MEASUREMENT_ID='G-29HCW48Q5N'/>
     </html>
   )
 }

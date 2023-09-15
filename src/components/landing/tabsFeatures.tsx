@@ -86,6 +86,7 @@ export function TabsFeatures() {
                   {features.map((feature, featureIndex) => (
                     <div
                       key={feature.title}
+                      id={`feature-${featureIndex}`}
                       className={clsx(
                         'group relative rounded-full px-4 py-1 lg:rounded-l-xl lg:rounded-r-none lg:p-6',
                         selectedIndex === featureIndex
@@ -95,6 +96,7 @@ export function TabsFeatures() {
                     >
                       <h3>
                         <Tab
+                          id={`${featureIndex}`}
                           className={clsx(
                             'font-display text-lg ui-not-focus-visible:outline-none',
                             selectedIndex === featureIndex
@@ -121,8 +123,8 @@ export function TabsFeatures() {
                 </Tab.List>
               </div>
               <Tab.Panels className="lg:col-span-7">
-                {features.map((feature) => (
-                  <Tab.Panel key={feature.title} unmount={false}>
+                {features.map((feature, featureIndex) => (
+                  <Tab.Panel id={`${featureIndex}`} key={feature.title} unmount={false}>
                     <div className="relative sm:px-6 lg:hidden">
                       <div className="absolute -inset-x-4 bottom-[-4.25rem] top-[-6.5rem] bg-white/10 ring-1 ring-inset ring-white/10 sm:inset-x-0 sm:rounded-t-xl" />
                       <p className="relative mx-auto max-w-2xl text-base text-white sm:text-center">
