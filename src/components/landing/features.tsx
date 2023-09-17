@@ -38,7 +38,7 @@ const featureConfigs = [
         title: "Evaluation Phase",
         subTitle: "Seamless Feedback API Integration",
         description: "Incorporate feedback or manual tagging features for internal evaluation teams, client partners, or end-users through a single API call.",
-        imageUrl: "https://d2aaddunp29031.cloudfront.net/feature_feedback-ui_1.png",
+        imageUrl: "https://d2aaddunp29031.cloudfront.net/feature_feedback-ui_2.png",
         imageAlt: "Feedback UI Overview",
         imageFirst: true
     }
