@@ -31,6 +31,10 @@ export const docsConfig: DocsConfig = {
           title: "Evaluate API",
           href: "/docs/evaluate-api",
         },
+        {
+          title: "Feedback UI Components",
+          href: "/docs/feedback-ui-components",
+        },
         // {
         //   title: "Code Blocks",
         //   href: "/docs/code-blocks",

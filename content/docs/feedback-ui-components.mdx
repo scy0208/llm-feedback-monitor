@@ -1,0 +1,33 @@
+---
+title: Integrate With User Feedback UI components
+description: Integrate With User Feedback UI component in lines of Code 
+---
+
+# Introduction
+If you are using React, there us noo more needs to build your user feedback button, our UI component can do the work for you.
+
+# How this works
+## Register and create project
+Go to https://www.llmfeedback.com/register, connect your github account, and create a new project in the dashboard
+
+## Install llm-feedback-client NodeJS SDK
+````mdx
+npm install llm-feedback-client@latest
+````
+
+## Create a client in your app:
+```ts showLineNumbers {3}
+import { Client, ThumbsUpDown } from "llm-feedback-client"
+import '@radix-ui/themes/styles.css'; //import the CSS since we are using radix-ui/themes for the component
+
+const feedbackClient = new Client({
+    projectId: 'YOUR_PROJECT_ID',
+    apiKey: 'YOUR_API_KEY' // Just use any string for now
+});
+```
+
+## Add your UI component:
+We currently support Thumbs-Up-Down component, with a Thumbs-Up and a Thumbs-Down choice, and a comment area
+```ts showLineNumbers {3}
+<ThumbsUpDown client={feedebackClient} contentId={aiContendId}/>
+```

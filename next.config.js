@@ -15,15 +15,6 @@ const nextConfig = {
           }
         ];
       },
-      async redirects() {
-        return [
-          {
-            source: "/docs",
-            destination: "/docs/get-start-with-python-sdk",
-            permanent: true,
-          },
-        ];
-      },
       reactStrictMode: true, 
       swcMinify: true,
       images: {

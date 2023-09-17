@@ -102,8 +102,12 @@ const handleSubmit = async (user: string, userInput: string, conversationId: str
 
 ```
 In your UI component:
-```html
-<button type="button" onClick={() => createFeedback(aiContendId, "thumb_up", 1)}
-    <ThumbUpIcon />
-</button>
+## Add your UI component:
+```ts showLineNumbers {3}
+import { ThumbsUpDown } from "llm-feedback-client"
+import '@radix-ui/themes/styles.css'; //import the CSS since we are using radix-ui/themes for the component
+```
+```html showLineNumbers {3}
+<ThumbsUpDown client={feedebackClient} contentId={aiContendId}/>
+
 ```
