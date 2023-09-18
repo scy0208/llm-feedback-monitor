@@ -11,11 +11,11 @@ type RequestData = {
 
 const systemSetting = {
     role: "system",
-    content: "You are a instruction-response quality evaluator. With the following instruction and response, evaluate  whether the instruction is fully followed. Your response should in json format {result: boolean, reason: string}, reason should be concise."
+    content: "You are a instruction-response quality evaluator please take a deep breath and work on this problem step-by-step. With the following instruction and response, evaluate  whether the instruction is fully followed on every detail. Your response should in json format {result: boolean, reason: string}, reason should be concise."
 }
 
 const temperature = 0
-const model = "gpt-3.5-turbo-0613"
+const model = "gpt-4-0613"
 
 async function checkProject(projectId: string) {
     const { data, error } = await createClient()
