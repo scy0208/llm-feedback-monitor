@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import {
     AreaChart,
     Card,
@@ -9,141 +9,102 @@ import {
     TabPanels,
     TabPanel,
 } from "@tremor/react";
+import { useEffect, useState } from "react";
+import { ConfigSelector } from "../config-selector";
 
-function getRandom(min: number, max: number) {
-    return Math.random() * (max - min) + min;
+
+interface MetricsCardProps {
+    projectId: string;
 }
 
-function generateData() {
-    const data = [];
-    let chatSessions = 300;
-    let bounceRate = 0.9;
-    let fallbackRate = 0.3;
 
-    for (let i = 2; i <= 30; i++) {
-        const date = `Aug ${String(i).padStart(2, '0')}`;
+export function MetricsCard({ projectId }: MetricsCardProps) {
+    
+    const [dailySessions, setSessions] = useState<{ name: string, daily_active_sessions: number }[]>([]);
+    const [dailyCSATs, setCSATs] = useState<{ name: string, daily_csat_percentage: number }[]>([]);
+    const [selectedConfig, setSelectedConfig] = useState<string | null>(null);
+    const [configs, setConfigs] = useState<string[]>([]);
+    const [isLoading, setLoading] = useState<boolean>(true);
 
-        // Apply growth trend to Chat Sessions
-        chatSessions += getRandom(2, 5);
-        const chatSessionsRounded = Math.round(chatSessions);
+    useEffect(() => {
+        const sessionsUrl = `/api/v0/get-daily-sessions/${projectId}`;
+        const csatUrl = `/api/v0/get-daily-csat/${projectId}`;
+        const configParam = selectedConfig ? `?config_name=${selectedConfig}` : '';
 
-        // Generate random CSAT
-        const csat = getRandom(0.5, 1).toFixed(2);
+        fetch(sessionsUrl + configParam)
+        .then((res) => res.json())
+        .then((data: { name: string, daily_active_sessions: number }[]) => {
+            setSessions(data);
+        })
 
-        // Apply decreasing trend to Bounce Rate
-        bounceRate -= getRandom(0.002, 0.006);
-        const bounceRateRounded = Math.min(Math.max(bounceRate, 0.6), 0.9).toFixed(2);
+        fetch(csatUrl + configParam)
+        .then((res) => res.json())
+        .then((data: { name: string, daily_csat_percentage: number }[]) => {
+            setCSATs(data);
+        })
 
-        // Apply decreasing trend to Fallback Rate
-        const fallbackRateRounded = getRandom(0, 0.2).toFixed(2);
+        fetch(`/api/v0/list-configs/${projectId}`)
+        .then((res) => res.json())
+        .then((data: { name: string }[]) => {
+            const configNames = data.map(item => item.name);
+            setConfigs(configNames);
+            
+            console.log(configNames);
+            console.log(isLoading);
+        })
+        setLoading(false);
+    }, [selectedConfig])
+    
+    if (isLoading) return <p>Loading...</p>
 
-        data.push({
-            Date: date,
-            "Chat Sessions": chatSessionsRounded,
-            CSAT: parseFloat(csat),
-            "Bounce Rate": parseFloat(bounceRateRounded),
-            "Fallback Rate": parseFloat(fallbackRateRounded),
-        });
-    }
-    return data;
-}
-
-const data = generateData();
-
-const numberFormatter = (value: number) => Intl.NumberFormat("us").format(value).toString();
-const percentageFormatter = (value: number) =>
-    `${Intl.NumberFormat("us")
-        .format(value * 100)
-        .toString()}%`;
-function sumArray(array: any[], metric: string): number {
-    return array.reduce((accumulator, currentValue) => accumulator + currentValue[metric], 0);
-}
-
-export function MetricsCard() {
     return (
+        <>
+        <ConfigSelector configs={configs} onConfigChange={setSelectedConfig} />
         <Card className="p-0">
             <TabGroup>
                 <TabList>
                     <Tab className="p-4 sm:p-6 text-left focus:bg-slate-100">
                         <p className="text-sm sm:text-base"> Sessions</p>
                         <p className="text-xs sm:text-xs">Total chat sessions</p>
-                        <Metric className="mt-2 text-inherit">
-                            {numberFormatter(sumArray(data, "Chat Sessions"))}
-                        </Metric>
+                        {/* <Metric className="mt-2 text-inherit">
+                            {numberFormatter(sumArray(data, "daily_active_sessions"))}
+                        </Metric> */}
                     </Tab>
                     <Tab className="p-4 sm:p-6 text-left focus:bg-slate-100">
-                        <p className="text-sm sm:text-base">CSAT</p>
-                        <p className="text-xs sm:text-xs">User satisfactory feedback</p>
-                        <Metric className="mt-2 text-inherit">
-                            {numberFormatter(sumArray(data, "CSAT")/ data.length)}
-                        </Metric>
-                    </Tab>
-                    <Tab className="p-4 sm:p-6 text-left focus:bg-slate-100">
-                        <p className="text-sm sm:text-base">Bounce rate</p>
-                        <p className="text-xs sm:text-xs">Visitors not interacting with chatbot</p>
-                        <Metric className="mt-2 text-inherit">
-                            {percentageFormatter(sumArray(data, "Bounce Rate") / data.length)}
-                        </Metric>
-                    </Tab>
-                    <Tab className="p-4 sm:p-6 text-left focus:bg-slate-100">
-                        <p className="text-sm sm:text-base">Fallback rate</p>
-                        <p className="text-xs sm:text-xs">Responses failing to follow user instruction</p>
-                        <Metric className="mt-2 text-inherit">
-                            {percentageFormatter(sumArray(data, "Fallback Rate") / data.length)}
-                        </Metric>
+                        <p className="text-sm sm:text-base"> CSAT</p>
+                        <p className="text-xs sm:text-xs">User CSAT</p>
+                        {/* <Metric className="mt-2 text-inherit">
+                            {numberFormatter(sumArray(data, "daily_active_sessions"))}
+                        </Metric> */}
                     </Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel className="p-6">
                         <AreaChart
                             className="h-80 mt-10"
-                            data={data}
-                            index="Date"
-                            categories={["Chat Sessions"]}
+                            data={dailySessions}
+                            index="day"
+                            categories={["daily_active_sessions"]}
                             colors={["blue"]}
-                            valueFormatter={numberFormatter}
                             showLegend={false}
                             yAxisWidth={50}
                         />
                     </TabPanel>
+
                     <TabPanel className="p-6">
                         <AreaChart
                             className="h-80 mt-10"
-                            data={data}
-                            index="Date"
-                            categories={["CSAT"]}
+                            data={dailyCSATs}
+                            index="day"
+                            categories={["daily_csat_percentage"]}
                             colors={["blue"]}
-                            valueFormatter={numberFormatter}
                             showLegend={false}
                             yAxisWidth={50}
-                        />
-                    </TabPanel>
-                    <TabPanel className="p-6">
-                        <AreaChart
-                            className="h-80 mt-10"
-                            data={data}
-                            index="Date"
-                            categories={["Bounce Rate"]}
-                            colors={["blue"]}
-                            valueFormatter={percentageFormatter}
-                            showLegend={false}
-                            yAxisWidth={40}
-                        />
-                    </TabPanel>
-                    <TabPanel className="p-6">
-                        <AreaChart
-                            className="h-80 mt-10"
-                            data={data}
-                            index="Date"
-                            categories={["Fallback Rate"]}
-                            colors={["blue"]}
-                            valueFormatter={percentageFormatter}
-                            showLegend={false}
-                            yAxisWidth={40}
                         />
                     </TabPanel>
                 </TabPanels>
             </TabGroup>
         </Card>
+        </>
     );
 }

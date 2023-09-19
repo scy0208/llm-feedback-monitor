@@ -25,7 +25,6 @@ export default async function DashboardPage() {
     return (
         <>
             <Heading size="7" className="pb-5">Failed Query Detection</Heading>
-            <ConfigSelector/>
             <Grid columns="2" gap="3" width="auto">
                 <div>
                     <Heading size="5" className="pb-5">General</Heading>
