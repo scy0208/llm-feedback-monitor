@@ -1,6 +1,6 @@
-'use client'
-
 import { Card, Metric, Text, Flex, BadgeDelta, DeltaType, Color, Grid } from "@tremor/react";
+import { createClient } from '@/utils/supabase';
+
 
 const colors: { [key: string]: Color } = {
   increase: "emerald",
@@ -10,60 +10,69 @@ const colors: { [key: string]: Color } = {
   decrease: "rose",
 };
 
-const categories: {
+export type Metric = {
   title: string;
-  metric: string;
-  metricPrev: string;
-  delta: string;
-  deltaType: DeltaType;
-}[] = [
-  {
-    title: "Total Chat Session",
-    metric: "11,833",
-    metricPrev: "11,438",
-    delta: "3.45%",
-    deltaType: "moderateIncrease",
-  },
-  {
-    "title": "Daily Active Session",
-    "metric": "395",
-    "metricPrev": "524",
-    "delta": "-24.62%",
-    "deltaType": "moderateDecrease"
-  },
-  {
-    title: "Customers",
-    metric: "1,072",
-    metricPrev: "856",
-    delta: "25.3%",
-    deltaType: "moderateIncrease",
-  },
-  {
-    title: "Avereage Chat Length",
-    metric: "298 words",
-    metricPrev: "287",
-    delta: "3.83%",
-    deltaType: "moderateIncrease",
-  },
-];
+  metric: number;
+  metricPrev?: string;
+  delta?: string;
+  deltaType?: DeltaType;
+};
 
-export function KeyMetrics() {
+type KeyMetricsProps = {
+  projectId: string;
+};
+
+
+async function getNumberMetric(projectId: string, functionName: string, metricName: string) : Promise<Metric> {
+  const client = createClient()
+  const response = await client
+    .rpc(functionName, { project: projectId });
+
+  if (response.error) {
+    console.error("Error fetching data:", response.error);
+    return {
+      title: metricName,
+      metric: 0,
+    };
+  }
+  console.log(response.data)
+
+  let metricValue = response.data === null ? 0 : response.data;
+  metricValue = parseFloat(metricValue.toFixed(2)); // Format to 2 decimal places
+
+  return {
+      title: metricName,
+      metric: metricValue
+  }  
+}
+
+
+export async function KeyMetrics({ projectId }: KeyMetricsProps) {
+  
+  const totalSessions = await getNumberMetric(projectId, 'get_total_sessions', 'Total Chat Session');
+  const dailySessions = await getNumberMetric(projectId, 'get_total_users', 'Total Users');
+  const averageWords = await getNumberMetric(projectId, 'get_avg_words_per_group', 'Average Chat Length (words)');
+
+  const metrics: Metric[] = [totalSessions, dailySessions, averageWords];
+  
   return (
     <Grid numItemsSm={2} numItemsLg={4} className="gap-6">
-      {categories.map((item) => (
+      {metrics.map((item) => (
         <Card key={item.title}>
           <Text>{item.title}</Text>
           <Flex justifyContent="start" alignItems="baseline" className="truncate space-x-3">
             <Metric>{item.metric}</Metric>
-            <Text className="truncate">from {item.metricPrev}</Text>
+            {item.metricPrev && <Text className="truncate">from {item.metricPrev}</Text>}
           </Flex>
-          <Flex justifyContent="start" className="space-x-2 mt-4">
-            <BadgeDelta deltaType={item.deltaType} />
-            <Flex justifyContent="start" className="space-x-1 truncate">
-              <Text color={colors[item.deltaType]}>{item.delta}</Text>
-              <Text className="truncate">to previous day</Text>
+          {item.delta && item.deltaType && (
+            <Flex justifyContent="start" className="space-x-2 mt-4">
+              <BadgeDelta deltaType={item.deltaType} />
+              <Flex justifyContent="start" className="space-x-1 truncate">
+                <Text color={colors[item.deltaType]}>{item.delta}</Text>
+                <Text className="truncate">to previous day</Text>
+              </Flex>
             </Flex>
-          </Flex>
+          )}
         </Card>
       ))}
     </Grid>
