@@ -1,3 +1,91 @@
+create table
+  public.content (
+    id text not null,
+    created_by text null,
+    created_at timestamp with time zone null default now(),
+    content text null,
+    group_id text null,
+    project_id text null,
+    config_name text null,
+    constraint content_duplicate_pkey primary key (id)
+  ) tablespace pg_default;
+
+create table
+  public.model_config (
+    name text not null,
+    created_at timestamp with time zone not null default now(),
+    project_id text not null,
+    config json null,
+    constraint model_config_pkey primary key (name, project_id),
+    constraint constraint_name unique (name, project_id),
+    constraint model_config_project_id_fkey foreign key (project_id) references project (id)
+  ) tablespace pg_default;
+
+create table
+  public.project (
+    id text not null,
+    created_at timestamp with time zone null default now(),
+    name text null,
+    user_id text null,
+    constraint Project_pkey primary key (id)
+  ) tablespace pg_default;
+
+create table
+  public.user_feedback (
+    id uuid not null default gen_random_uuid (),
+    feedback_source text null,
+    comment text null,
+    content_id text null,
+    key text null,
+    score numeric null,
+    "user" text null,
+    created_at timestamp with time zone null default now(),
+    constraint user_feedback_duplicate_pkey primary key (id),
+    constraint user_feedback_duplicate_user_content_id_key unique ("user", content_id)
+  ) tablespace pg_default;
+
+create view
+  public.model_config_summary_view as
+select
+  model_config.name,
+  model_config.config::text as config,
+  model_config.project_id,
+  user_feedback.key,
+  sum(user_feedback.score) as total_score
+from
+  user_feedback
+  join content on user_feedback.content_id = content.id
+  join model_config on content.config_name = model_config.name
+  and content.project_id = model_config.project_id
+  join project on model_config.project_id = project.id
+group by
+  model_config.name,
+  (model_config.config::text),
+  model_config.project_id,
+  user_feedback.key;
+
+create view
+  public.user_feedback_by_project as
+select
+  user_feedback.id,
+  user_feedback.feedback_source,
+  user_feedback.comment,
+  user_feedback.key,
+  user_feedback.score,
+  user_feedback."user",
+  user_feedback.created_at,
+  project.user_id,
+  content.project_id,
+  content.group_id,
+  content.content,
+  model_config.config
+from
+  user_feedback
+  join content on user_feedback.content_id = content.id
+  join project on content.project_id = project.id
+  join model_config on content.config_name = model_config.name
+  and content.project_id = model_config.project_id;
+
 DROP FUNCTION IF EXISTS get_total_sessions;
 CREATE OR REPLACE FUNCTION get_total_sessions(project text)
 RETURNS bigint AS $$
