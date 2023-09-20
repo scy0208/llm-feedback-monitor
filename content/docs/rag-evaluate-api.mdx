@@ -1,0 +1,132 @@
+---
+title: Evaluate API 
+description: Evaluate the instruction is fully followed by the response
+---
+
+# Introduction
+Based on databricks's recent reseach https://www.databricks.com/blog/LLM-auto-eval-best-practices-RAG
+on LLM Evaluation of RAG Applications, we build and endpoint to easily evaluate the RAG Q&A and make it as an online “LLMs as a judge” 
+For each provided context, question and answer, give your score and reasoning (5 to 30 words) for the correctness, helpfulness,
+comprehensiveness and readability of the answer. Our grading standard is as follow:
+
+- Correctness: If the answer correctly answer the question, below are the details for different scores:
+  - Score 0: the answer is completely incorrect, doesn’t mention anything about the question or is completely contrary to the correct answer.
+  - Score 1: the answer provides some relevance to the question and answer one aspect of the question correctly.
+  - Score 2: the answer mostly answer the question but is missing or hallucinating on one critical aspect.
+  - Score 3: the answer correctly answer the question and not missing any major aspect
+- Helpfulness: Evaluate the directness, completeness, and relevancy of the answer to the given question without. Consider the following scoring criteria:
+  - Score 0: The answer is completely off-topic or irrelevant to the question, providing no useful information.
+  - Score 1: The answer leaves gaps that would require the user to seek information elsewhere for a complete answer.
+  - Score 2: The answer directly resolve most part the question. But didn't resolve all details of the question.
+  - Score 3: The answer fully and directly addresses every part of the question, providing a complete solution or recommendation without the need for further inquiry. 
+  - Score 3: If an answer involves asking for more details or follow-up questions, it should not be scored a 3, as it is not a complete solution in itself.)
+- Comprehensiveness: How comprehensive is the answer, does it fully answer all aspects of the question and provide comprehensive explanation and other necessary information. Below are the details for different scores:
+  - Score 0: typically if the answer is completely incorrect, then the comprehensiveness is also zero score.
+  - Score 1: if the answer is correct but too short to fully answer the question, then we can give score 1 for comprehensiveness.
+  - Score 2: the answer is correct and roughly answer the main aspects of the question, but it’s missing description about details. Or is completely missing details about one minor aspect.
+  - Score 3: the answer is correct, and covers all the main aspects of the question
+
+
+Evaluate API is POST API helps evaluate the instruction is fully followed by the response.
+Here are the necessary parameters in the POST body
+| Parameter      | Description                                              |
+|------------|----------------------------------------------------------|
+| `project_id`  | Your project, you can create one at https://www.llmfeedback.com/dashboard  |
+| `question`   | The instruction you want to evaluate      |
+| `answer` |   The response you want to evaluate                      |
+| `context` |   The context used to answer the question                      |
+
+Here we will use a example of Winery Chatbot https://demo.vinosensei.com/ as an example to evaluate the AI response to user query/
+
+## Standard
+# Create Your Project
+Please create a project at https://www.llmfeedback.com/dashboard, get the project_id
+
+# Sample API Request
+
+### Example of a fully answered response to a instructions.
+```bash
+curl --location 'https://api.llmfeedback.com/api/v0/rag-evaluate' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+	"project_id": "YOUR_PROJECT_ID",
+	"question": "What is the business hours of the tasting room?",
+	"answer": "The business hours of the tasting room are from 10:00 A.M. to 6:00 P.M daily.",
+    "context": "{\"content\":[{\"source\":\"https://fake-winery.vercel.app/Wine-Shop/Virtual-Tasting.html\",\"pageContent\":\"ERA2021AllocationsareHere!CurrentOfferingsSingleVineyardsSingleAVAsWineClubWinesWinemakingLibraryERAAOXGiftingVirtualTastingVirtualTastingScheduleaPrivateVirtualTastingVinoSenseiispleasedtobringNapaValleytoyouwithaPrivateVirtualTastingexperience.Thisenlighteningwinetastingledbyaknowledgeableandpersonablewineeducatoroffersanintimate,interactiveandimmersiveexplorationintoVinoSenseifrombeginningtoend.Choosefromseveralflightoptionsorallowustocurateaselectionuniquelytailoredjustforyou.Scheduleyourtastingandthenprepareforavirtualtastingexperiencelikenoother.ClicktoInquireViewProductDetails»bottlesavailable$0.00SKU:VT-Web-Sku-OnlyAddtoCartTrade&MediaBlogADA&PrivacyPolicyTermsOfUseContactUsJoinOurMailingListWeatherHoldsWhattoExpectWhenVisitingVinoSensei1000VinoSenseiLane,Vineyard,CA94559(707)123-4567\"},{\"source\":\"https://fake-winery.vercel.app/Virtual-Tasting-Experiences.html\",\"pageContent\":\"InteractiveLiveStreamTastingsVinoSenseiwineenthusiastscannowpartakeinvirtualtastingexperiencesbringingtheexperiencesyouloveatVinoSenseidirectlyfromRutherfordNapaValleyintoyourhome.JoinintohearourWinemakerandhisVirtualTastingTeamtastethroughwinesinalivestreaminginteractivesettingdesignedforwineloversofalllevelswhereyoumayaskquestionsremotely.Ordiveintoourdigitally-recordedexperiencesfoundonourwebsiteatyourleisure.Learnthestorybehindeachwinefromvineyardtobottleanddiscoverwhichfoodstopairwithawine.Shipthewinestoyourhomeandtrulyimmerseyourselfintoyourprivateat-hometastingexperience.ClicktoviewavailabletastingsLiveat5onInstagramLiveorFacebookLiveWineDownWednesdays\"},{\"source\":\"https://fake-winery.vercel.app/Visit-Us/Visit-Us-Holiday.html\",\"pageContent\":\"HolidayHours:November24thThanksgivingDayClosedDecember1stAOHolidayParty,finalTastingReservation3:00P.M.,Closeat4:00P.M.December24thChristmasEve,finalTastingReservation2:00P.M.,Closeat4:00P.M.December25thChristamsDayClosedReservationsarealwaysrequiredandarebookednomorethan45daysout.Partiesofnineormoremayinquireaboutourlargegrouptastings.Tastingexperiencesrangefrom$75-$300perperson.Wewelcomedogsonleash.AlltastingexperiencesmaybebookedwithourReservationsTeamattheemailaddressortelephonenumberbelow.Phone:(707)123-4567|Email:reservations@aowinery.com1155MeeLaneatHighway29,St.Helena,CA94574,RutherfordAVAClickheretoreviewtastingmenu.TastingExperiencesSignatureSelectionsEnjoyfourofourcurrentreleasewines,includingourcelebratedCabernetSauvignon,duringthisintroductionintoourportfolioledbyaWineEducator.\"},{\"source\":\"https://fake-winery.vercel.app/Visit-Us.html\",\"pageContent\":\"SkiptomaincontentMenu(707)123-4567(707)123-4567ERAEliteWineShopWineClubWineWineClubShipmentsClubPreferencesResetPasswordAddressBookCreditCardsOrderHistoryEditProfileLogoutYourAccountLoginCart0items:$0.00CloseShoppingCartItemwassuccessfullyaddedtoyourcartSubtotal$0.00ViewCartHomeVisitUsWineShopWineClubEventsOurStoryVineyardsVirtualTastingPhilanthropyVinoSenseiWinery1000VinoSenseiLane,Vineyard,CA94559(707)123-4567WineTastingatVinoSenseiExperiencethebestofNapaValleyterroiratourpicturesqueRutherfordestate.We’reopendailyforwinetastingexperiencesonourbeautifulterraceandinsideourinvitingtastingroombarfrom10:00A.M.to6:00P.M.Reservationsrecommended.VinoSenseiWineryisfamilyandpetfriendly.Wewelcomedogsonleash.Partiesofnineormoremayinquireaboutourlargegrouptastings.Tastingexperiencesrangefrom$75-$300perperson.\"},{\"source\":\"https://fake-winery.vercel.app/Visit-Us/Visit-Us-Holiday.html\",\"pageContent\":\"SkiptomaincontentMenu(707)123-4567(707)123-4567ERAEliteWineShopWineClubWineWineClubShipmentsClubPreferencesResetPasswordAddressBookCreditCardsOrderHistoryEditProfileLogoutYourAccountLoginCart2items:$1,380.00CloseShoppingCartItemwassuccessfullyaddedtoyourcartStrickerVineyardCabernetSauvignon3PACK2021$690.00$1,380.00Subtotal$1,380.00ViewCartCheckOutHomeVisitUsWineShopWineClubEventsOurStoryVineyardsVirtualTastingPhilanthropyVinoSensei1000VinoSenseiLane,Vineyard,CA94559(707)123-4567WineTastingatVinoSenseiExperiencethebestofNapaValleyterroiratourpicturesqueRutherfordestate.We’reopendailyforwinetastingexperiencesonourbeautifulterraceandinsideourinvitingtastingroombarfrom10:00A.M.to6:00P.M.HolidayHours:November24thThanksgivingDayClosedDecember1stAOHolidayParty,finalTastingReservation3:00P.M.,Closeat4:00P.M.\"},{\"source\":\"https://fake-winery.vercel.app/Events.html\",\"pageContent\":\"Saturday,July22,20237:00P.M.to10:00P.M.WineandFoodPairingVineyardTerraceClicktoRSVPFlavorsofSummer&SingleVineyardsSaturday,August26,202311:00A.M.to1:00P.M.WineandFoodPairingVineyardTerraceClicktoRSVPERAEliteExclusiveMarstonVineyardTour&LunchSaturday,September9,202310:30A.M.to2:30P.M.ERAEliteMembersOnlyClicktoRSVPLobsterLunchSaturday,September23,202311:00A.M.to2:00P.M.WineandFoodPairingVineyardTerraceClicktoRSVPSeasonofGivingVirtualTastingSaturday,October7,202312:00P.M.to1:30P.M.WineandFoodPairing,ChefDemonstrationLiveVirtualTastingProprietaryRedNapaValley2019ProprietaryRedNapaValley2018ProprietaryRedNapaValley2017ClicktoRSVPHarvestCelebrationSaturday,October21,202311:00A.M.to1:00P.M.WineandFoodPairingVineyardTerraceClicktoRSVPSingleVineyardReleasePartySaturday,November11,202311:00A.M.to1:30P.M.WineandFoodPairing\"}]}"
+}'
+```
+response
+```json
+{
+    "correctness":{
+        "score":3,
+        "reason":"The answer correctly states the business hours of the tasting room."
+    },
+    "helpfulness":{
+        "score":3,
+        "reason":"The answer directly and completely addresses the question."
+    },
+    "comprehensiveness":{
+        "score":3,
+        "reason":"The answer is correct and covers all the main aspects of the question."
+    }
+}
+```
+
+
+### Example of the partial correct answer
+```bash
+curl --location 'https://api.llmfeedback.com/api/v0/rag-evaluate' \
+--header 'Content-Type: text/plain' \
+--data '{
+	"project_id": "YOUR_PROJECT_ID",
+	"question": "What is the price for Virtual Tasting?",
+	"answer": "I'\''m sorry, but the price for a Virtual Tasting is not provided in the information I have. I recommend checking the winery'\''s official website or contacting them directly for the most accurate information.",
+	"context": "[\n    {\n      \"source\": \"https://fake-winery.vercel.app/Wine-Shop/Virtual-Tasting.html\",\n      \"pageContent\": \"ERA 2021 Allocations are Here! Current Offerings Single Vineyards Single AVAs Wine Club Wines Winemaking Library ERA AOX Gifting Virtual Tasting Virtual Tasting Schedule a Private Virtual Tasting VinoSensei is pleased to bring Napa Valley to you with a Private Virtual Tasting experience. This enlightening wine tasting led by a knowledgeable and personable wine educator offers an intimate, interactive and immersive exploration into VinoSensei from beginning to end. Choose from several flight options or allow us to curate a selection uniquely tailored just for you. Schedule your tasting and then prepare for a virtual tasting experience like no other. Click to Inquire View Product Details » bottles available $0.00 SKU: VT-Web-Sku-Only Add to Cart Trade & Media Blog ADA & Privacy Policy Terms Of Use Contact Us Join Our Mailing List Weather Holds What to Expect When Visiting VinoSensei 1000 VinoSensei Lane, Vineyard, CA 94559 (707) 123-4567\"\n    },\n    {\n      \"source\": \"https://fake-winery.vercel.app/Virtual-Tasting-Experiences.html\",\n      \"pageContent\": \"Interactive Live Stream Tastings VinoSensei wine enthusiasts can now partake in virtual tasting experiences bringing the experiences you love at VinoSensei directly from Rutherford Napa Valley into your home. Join in to hear our Winemaker and his Virtual Tasting Team taste through wines in a live streaming interactive setting designed for wine lovers of all levels where you may ask questions remotely. Or dive into our digitally-recorded experiences found on our website at your leisure. Learn the story behind each wine from vineyard to bottle and discover which foods to pair with a wine. Ship the wines to your home and truly immerse yourself into your private at-home tasting experience. Click to view available tastings Live at 5 on Instagram Live or Facebook Live Wine Down Wednesdays\"\n    },\n    {\n      \"source\": \"https://fake-winery.vercel.app/Visit-Us/Visit-Us-Holiday.html\",\n      \"pageContent\": \"Available in our tasting room bar or on the outdoor terrace. $100 per person. Click to Inquire About Curated Selections Tastings Single Vineyard Tasting Take a deep dive into some of Napa Valley’s most renowned vineyards during this exclusive Single Vineyard tasting where you’ll sip several of our most critically acclaimed, limited production wines, and, if available, our flagship wine ERA, while gaining knowledge about the unique terroir that makes each site special. Available in our tasting room bar or on the outdoor terrace. $125 per person. Click to Inquire About Single Vineyard Tastings Private Tasting During this elevated experience in one of our exclusive Private Tasting rooms, enjoy an interactive and personalized tasting guided by a dedicated Wine Educator. Taste through our award-winning, handcrafted wines from Napa Valley’s renowned vineyards and AVAs – and, if available, our flagship wine ERA. Cheese accompaniment included. $150 per person.\"\n    },\n    {\n      \"source\": \"https://fake-winery.vercel.app/product/Schedule-a-Private-Tasting.html\",\n      \"pageContent\": \"<p><strong>Retail:</strong> $512<br /><strong>Wine Club: </strong>$400</p><hr /><p><strong><strong>Single Vineyard Tasting<\\/strong><\\/strong><br />Experience the best of Napa Valley terroir through the Single Vineyard tasting. Taste through three limited-production Cabernet Sauvignon wines handcrafted from some of Napa Valley’s most renowned and historic vineyards.<\\/p><p><strong>Cabernet Sauvignon Sunshine Valley Vineyard Oak Knoll District 2015<br />Cabernet Sauvignon Stagecoach Vineyard Atlas Peak 2016<br />Cabernet Sauvignon Beckstoffer Dr. Crane Vineyard Oakville 2017<\\/strong><\\/p><p><strong>Retail: <\\/strong>$750,<br /><strong>Wine Club: <\\/strong>$600<\\/p><hr /><p><strong><strong>The Flagship Flight Tasting<\\/strong><\\/strong><br />Created for polished palates, this Flagship Flight tasting soars from the first sip and ascends through four limited-production wines, including our flagship wine, E<span>RA<\\/span>, leaving a trail of pleasure behind.<\\/p>\"\n    }\n  ]"
+}'
+```
+Response
+```json
+{
+    "correctness":{
+        "score":3,
+        "reason":"The answer is correct as the context does not provide information about the price of the Virtual Tasting."
+    },
+    "helpfulness":{
+        "score":2,
+        "reason":"The answer is helpful as it suggests checking the winery's official website or contacting them directly for the most accurate information."
+    },
+    "comprehensiveness":{
+        "score":2,
+        "reason":"The answer is comprehensive in terms of the information available in the context, but it does not provide the actual price."
+    }
+}
+```
+
+### Example of the incorrect answer
+```bash
+curl --location 'https://api.llmfeedback.com/api/v0/rag-evaluate' \
+--header 'Content-Type: text/plain' \
+--data '{"project_id": "YOUR_PROJECT_ID", 
+"question": "What'\''s shipment policy shiiping to Mississippi in summer?", 
+"answer": "During the summer season, all shipments to shippable states are currently on hold due to weather conditions. However, you have two options:1. You can choose **expedited shipping with ice packs** for an additional cost of at least $20.2. You can select **Ground shipping** and wait until the weather hold is lifted in the fall.",
+"context": "Rule No.1: Please note that due to weather conditions, all shipments to Shippable States are currently on hold for the summer season. If you wish to receive your shipment promptly, we kindly request that you choose an expedited shipping method. Please be aware that opting for expedited shipping will automatically include the use of ice packs, incurring an additional cost of at least $20 for the ice packs. However, if you select Ground shipping, your order will not be shipped until the weather hold is lifted in the fall. Thank you for your understanding.\n\nRhode Island[edit] Direct shipment of wine is prohibited in Rhode Island for off-site sales; consumers may place on-site orders for shipment at wineries.\nSouth Carolina[edit] Consumers in South Carolina are limited to 2 cases per person shipped directly to them per month.\nSouth Dakota[edit] Consumers in South Dakota are limited to 12 cases shipped directly to them annually.\nTennessee[edit] Wineries may ship no more than one case per month, nor three per year, directly to an individual consumer in Tennessee.\nTexas[edit] Consumers in Texas are limited to nine gallons monthly and no more than 36 gallons annually shipped directly per person.\nUtah[edit] sales and/or excise taxes. Most states also limit the quantity of wine that may be purchased monthly or annually, usually in terms of the number of nine-liter cases of wine that may be shipped, though most consumers are unaffected by these limits. Shipment of wine to dry areas is illegal.\nIn the 2005 case Granholm v. Heald, the Supreme Court ruled that states must regulate direct shipment of wines to consumers from in-state and out-of-state wineries in the same way, either allowing or banning both. Since that ruling, more states gradually began to allow direct shipment of wine from wineries to consumers. Some states also allow direct shipment of wine from out-of-state retailers to consumers.\nLaws by state[edit] [1][2]\nAlabama[edit]\nMississippi[edit] Direct shipment of wine is prohibited in Mississippi.\nMissouri[edit] Consumers in Missouri are limited to 2 cases shipped directly to them per month.\nMontana[edit] Consumers in Montana are limited to 18 cases shipped directly to them annually.\nNebraska[edit] Consumers in Nebraska are limited to 12 cases shipped directly to them annually.\nNevada[edit] Consumers in Nevada are limited to 12 cases shipped directly to them annually.\nNew Hampshire[edit] Consumers in New Hampshire are limited to 12 cases shipped directly to them annually.\nNew Jersey[edit] Only small wineries that make less than 250,000 gallons of wine annually are allowed to ship up to 12 cases of wine per year to consumers in New Jersey.\nNew Mexico[edit] Consumers in New Mexico are limited to 2 cases per person shipped directly to them per month.\nNew York[edit] Consumers in New York are limited to 36 cases per person shipped directly to them annually.\nNorth Carolina[edit]"
+}'
+```
+Response
+```json
+{
+    "correctness":{
+        "score":0,
+        "reason":"The answer is incorrect because the context clearly states that direct shipment of wine is prohibited in Mississippi."
+    },
+    "helpfulness":{
+        "score":0,
+        "reason":"The answer is not helpful as it provides incorrect information about shipping to Mississippi."
+    },
+    "comprehensiveness":{
+        "score":0,
+        "reason":"The answer is not comprehensive as it does not correctly address the question."
+    }
+}
+```

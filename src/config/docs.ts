@@ -35,6 +35,10 @@ export const docsConfig: DocsConfig = {
           title: "Feedback UI Components",
           href: "/docs/feedback-ui-components",
         },
+        {
+          title: "RAG LLM evaluate",
+          href: "/docs/rag-evaluate-api",
+        },
         // {
         //   title: "Code Blocks",
         //   href: "/docs/code-blocks",
