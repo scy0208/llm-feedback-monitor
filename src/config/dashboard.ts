@@ -75,16 +75,16 @@ export const dashboardConfig: DashboardConfig = {
       href: "/dashboard/metrics",
       icon: "settings",
     },
-    // {
-    //   title: "Monitoring",
-    //   href: "/dashboard/monitoring",
-    //   icon: "thumbsup",
-    // },
-    // {
-    //   title: "Analysis",
-    //   href: "/dashboard/analysis",
-    //   icon: "thumbsup",
-    // },
+    {
+      title: "Monitoring (Beta)",
+      href: "/dashboard/monitoring",
+      icon: "thumbsup",
+    },
+    {
+      title: "Analysis (Beta)",
+      href: "/dashboard/analysis",
+      icon: "thumbsup",
+    },
     // {
     //   title: "Datasets",
     //   href: "/dashboard/feedback",
