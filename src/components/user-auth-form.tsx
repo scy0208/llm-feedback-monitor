@@ -12,7 +12,9 @@ import { userAuthSchema } from "@/lib/validations/auth"
 import { Icons } from "@/components/icons"
 import { Button } from "@radix-ui/themes"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+import * as Sentry from "@sentry/nextjs";
+
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
 type FormData = z.infer<typeof userAuthSchema>
 
@@ -99,12 +101,27 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         type="button"
         variant="outline"
         color="gray"
-        onClick={() => {
-          setIsGitHubLoading(true)
-          signIn("github",  {
-            redirect: false,
-            callbackUrl: searchParams?.get("from") || "/dashboard",
-          })
+        onClick={async () => {
+          const transaction = Sentry.startTransaction({
+            name: "GitHub Auth Transaction",
+          });
+
+          Sentry.configureScope((scope) => {
+            scope.setSpan(transaction);
+          });
+
+          setIsGitHubLoading(true);
+          try {
+            await signIn("github", {
+              redirect: false,
+              callbackUrl: searchParams?.get("from") || "/dashboard",
+            });
+          } catch (error) {
+            Sentry.captureException(error); // Capture the error in Sentry if signIn fails.
+          } finally {
+            transaction.finish(); // Finish the Sentry transaction
+            setIsGitHubLoading(false); // Reset the loading state
+          }
         }}
         disabled={isLoading || isGitHubLoading}
         highContrast
