@@ -1,4 +1,7 @@
-import { createClient } from '@/utils/supabase'
+import { createClient } from '@/utils/supabase';
+import { sendEtagResponse } from 'next/dist/server/send-payload';
+import * as Sentry from "@sentry/nextjs";
+import { v4 as uuidv4 } from 'uuid';
 
 type RequestData = {
     content: string;
@@ -56,10 +59,15 @@ export async function PUT(req: Request) {
             return new Response(JSON.stringify({ message: 'project_id is required' }), { status: 400 });
         }
 
-        const id = await insertContent(requestData);
-        return new Response(JSON.stringify({ id }), { status: 200 });
+        if (!requestData.id) {
+            requestData.id = uuidv4();
+        }
+
+        insertContent(requestData);
+        return new Response(JSON.stringify({ id: requestData.id }), { status: 200 });
     } catch (error) {
         console.error("An error occurred:", error);
+        Sentry.captureException(error);
         return new Response(JSON.stringify({ message: 'Internal Server Error' }), { status: 500 });
     }
 }
