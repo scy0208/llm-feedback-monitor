@@ -76,5 +76,6 @@ export async function PUT(req: Request) {
     } catch (error) {
         console.error("An error occurred:", error);
         Sentry.captureException(error);
+        return new Response(JSON.stringify({ message: 'Internal Server Error' }), { status: 500 })
     }
 }
