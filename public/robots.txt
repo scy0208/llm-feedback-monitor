@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.llmfeedback.com
+
+# Sitemaps
+Sitemap: https://www.llmfeedback.com/sitemap.xml
