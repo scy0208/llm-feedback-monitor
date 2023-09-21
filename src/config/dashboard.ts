@@ -75,6 +75,11 @@ export const dashboardConfig: DashboardConfig = {
       href: "/dashboard/metrics",
       icon: "settings",
     },
+    {
+        title: "Feedback",
+        href: "/dashboard/feedback",
+        icon: "thumbsup",
+    }
     // {
     //   title: "Monitoring",
     //   href: "/dashboard/monitoring",

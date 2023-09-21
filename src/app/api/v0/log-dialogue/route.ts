@@ -66,8 +66,12 @@ export async function PUT(req: Request) {
             return new Response(JSON.stringify({ message: 'project_id is required' }), { status: 400 });
         }
 
-        const id = await insertContent(requestData);
-        return new Response(JSON.stringify({ id }), { status: 200 });
+        if (!requestData.id) {
+            requestData.id = uuidv4();
+        }
+
+        insertContent(requestData);
+        return new Response(JSON.stringify({ id: requestData.id }), { status: 200 });
     } catch (error) {
         console.error("An error occurred:", error);
         return new Response(JSON.stringify({ message: 'Internal Server Error' }), { status: 500 });
