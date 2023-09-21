@@ -1,5 +1,6 @@
 import { createClient } from '@/utils/supabase'
 import { v4 as uuidv4 } from 'uuid';
+import * as Sentry from "@sentry/nextjs";
 
 type RequestData = {
     instruction: string;
@@ -59,7 +60,7 @@ export async function PUT(req: Request) {
     try {
         const requestData = (await req.json()) as RequestData;
         if (!requestData.instruction || !requestData.response) {
-            return new Response(JSON.stringify({ message: 'Instruction and Response are not required' }), { status: 400 });
+            return new Response(JSON.stringify({ message: 'Instruction and Response are required' }), { status: 400 });
         }
 
         if (!requestData.project_id) {
@@ -74,6 +75,6 @@ export async function PUT(req: Request) {
         return new Response(JSON.stringify({ id: requestData.id }), { status: 200 });
     } catch (error) {
         console.error("An error occurred:", error);
-        return new Response(JSON.stringify({ message: 'Internal Server Error' }), { status: 500 });
+        Sentry.captureException(error);
     }
 }
