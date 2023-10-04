@@ -7,34 +7,24 @@ type RequestData = {
 
 export const runtime = 'edge';
 
-interface TopicDescription {
-  [key: string]: string;
-}
-
-async function get_labels(email: string): Promise<TopicDescription> {
+async function get_labels(email: string): Promise<any> {
     let queryBuilder = createClient()
         .from('email_labels')
-        .select(`label_name, label_description`)
+        .select(`label_name, label_id, label_description`)
         .eq('email', email);
     const { data, error } = await queryBuilder;
     console.log(data);
-    let topicDescription: TopicDescription = {};
-    if (data) {
-        data.forEach((item: any) => {
-            topicDescription[item.label_name] = item.label_description;
-        });
-    }
-    return topicDescription;
+    return data;
     
 }
 
-function format_system_prompt(topic_description: TopicDescription, email: string): string {
+function format_system_prompt(topic_description: any, email: string): string {
   return `
   You are an email label assistant helping an e-commerce team to label a given email.
   An email contains the main message and the quoted thread (the part begin with \`>\` which can help you understand the context of the email).
-  You will be given a list of topics and their descriptions. 
-  Please first review and understand the email and the context, compare the main message (not the context) with each description, and select the most relevant topic(s), minimizing the number of topics selected.
-  Your output should be in a list of JSON object of fields: topic, confidence_score (0-1), and reason, sorted by confidence_score DESC, and using markdown.
+  You will be given a list of lable their name, id and descriptions. 
+  Please first review and understand the email and the context, compare the main message (not the context) with each label description, and select the most relevant topic(s), minimizing the number of topics selected.
+  Your output should be in a list of JSON object of fields: label, label_id, confidence_score (0-1), and reason, sorted by confidence_score DESC, and using markdown.
   \n\nHere is the topic-description list:\n ${JSON.stringify(topic_description, null, 2)}
   \n\nHere is the email:\n ${email}
   `;
