@@ -5,9 +5,7 @@ type RequestData = {
   message: string
 }
 
-export const config = {
-    runtime: 'edge',
-}
+export const runtime = 'edge';
 
 interface TopicDescription {
   [key: string]: string;
