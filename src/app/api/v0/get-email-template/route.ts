@@ -2,15 +2,15 @@ import { createClient } from '@/utils/supabase';
 
 type RequestData = {
     email: string,
-    label_ids: string[]
+    labels: string[]
 }
 
-async function get_templates(email: string, labelIds: string[]): Promise<any> {
+async function get_templates(email: string, labelNames: string[]): Promise<any> {
     let queryBuilder = createClient()
         .from('email_templates')
         .select(`template`)
         .eq('email', email)
-        .in('label_id', labelIds)
+        .in('label_name', labelNames)
     const { data, error } = await queryBuilder;
     const res = data?.map((d: any) => d.template)
     console.log(res);
@@ -18,8 +18,8 @@ async function get_templates(email: string, labelIds: string[]): Promise<any> {
 }
 
 export async function POST(request: Request) {
-    const { email, label_ids } = (await request.json()) as RequestData
-    const templates = await get_templates(email, label_ids)
+    const { email, labels } = (await request.json()) as RequestData
+    const templates = await get_templates(email, labels)
     if (!templates) {
         return new Response("", { status: 200 })
     }
