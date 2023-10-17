@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     const { email, labels } = (await request.json()) as RequestData
     const templates = await get_templates(email, labels)
     if (!templates || Object.keys(templates).length === 0) {
-        return new Response("", { status: 200 })
+        return new Response(JSON.stringify({}), { status: 200 })
     }
     return new Response(JSON.stringify(templates), { status: 200 })
 }
