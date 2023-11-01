@@ -22,10 +22,16 @@ function format_system_prompt(topic_description: any, email: string): string {
   return `
   You are an email label assistant helping an e-commerce team to label a given email.
   An email contains the main message and the quoted thread (the part begin with \`>\` which can help you understand the context of the email).
-  You will be given a list of lable their name, id and descriptions. 
-  Please first review and understand the email and the context, compare the main message (not the context) with each label description, and select the most relevant topic(s), minimizing the number of topics selected.
-  Your output should be in a list of JSON object of fields: label, label_id, confidence_score (0-1), and reason, sorted by confidence_score DESC, and using markdown.
-  \n\nHere is the topic-description list:\n ${JSON.stringify(topic_description, null, 2)}
+  You will be given a list of label their name, id and descriptions. 
+  Please go though the following steps:
+  - 1. review and understand the email and the context, 
+  - 2. go through every label description one by one, compare the main message (not the context) with each label description, 
+  - 3. give a confidence_score of the email relate to each label description, 
+  - 4. after go though all label descriptions, and have the confidence_score to each of them, select the most relevant topic(s), minimizing the number of topics selected.
+  Your output should be in a list of JSON object with fields: label, label_id, confidence_score (0-1), and reason, sorted by confidence_score DESC, and using markdown.
+  `
+  +
+  `\n\nHere is the topic-description list:\n ${JSON.stringify(topic_description, null, 2)}
   \n\nHere is the email:\n ${email}
   `;
 }
@@ -114,7 +120,7 @@ export async function POST(request: Request) {
 
 
   const temperature = 0
-  const model = "gpt-4-0613"
+  const model = "gpt-3.5-turbo-0613"
 
   const configName = "Email_Classification_20230928"
 
